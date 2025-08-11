@@ -59,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    
 ]
 
 ROOT_URLCONF = 'main.urls'
@@ -145,14 +147,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-)
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-]
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:3000',
+# )
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3000',
+# ]
 CORS_URLS_REGEX = r'^/api.*'
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 
