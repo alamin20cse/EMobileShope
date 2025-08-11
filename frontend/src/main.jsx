@@ -16,6 +16,7 @@ import {
 } from '@tanstack/react-query'
 import HomeMain from './pages/HomeMain.jsx';
 import Home from './pages/Home.jsx';
+import ProductDetailes from './pages/ProductDetailes.jsx';
 
 
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Home></Home>
+      },
+      {
+        path:`/product/:id`,
+        element:<ProductDetailes></ProductDetailes>
       }
     ]
   },

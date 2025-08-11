@@ -147,6 +147,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
+
+
 # CORS_ORIGIN_WHITELIST = (
 #     'http://localhost:3000',
 # )
