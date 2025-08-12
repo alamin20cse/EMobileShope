@@ -14,3 +14,13 @@ class CatagorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = "__all__"
+
+class UserSeralizer(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields=['id','username','password']
+        estra_kwargs={'password':{'write_only':True}}
+    def create(self, validated_data):
+        user=User.objects.create_user(**validated_data)
+        return user
+    

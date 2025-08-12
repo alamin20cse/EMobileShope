@@ -18,6 +18,9 @@ import HomeMain from './pages/HomeMain.jsx';
 import Home from './pages/Home.jsx';
 import ProductDetailes from './pages/ProductDetailes.jsx';
 import CategoryProduct from './pages/CategoryProduct.jsx';
+import Login from './pages/LoginPage.jsx';
+import Logout from './pages/Logout.jsx';
+import Register from './pages/RegisterPage.jsx';
 
 
 
@@ -39,6 +42,18 @@ const router = createBrowserRouter([
         path:`/categori/:id`,
         element:<CategoryProduct></CategoryProduct>
       },
+      {
+        path:'/login',
+        element:<Login></Login>
+      },
+      {
+        path:'/logout',
+        element:<Logout></Logout>
+      },
+      {
+        path:'/register',
+        element:<Register></Register>
+      }
     ]
   },
 ]);

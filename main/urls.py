@@ -4,13 +4,18 @@ from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
+
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/login/',obtain_auth_token),
+    # path('api/login/',obtain_auth_token),
+
+     path('api/token/',TokenObtainPairView.as_view(),name='get_token'),
+    path('api/token/refresh/',TokenRefreshView.as_view(),name='refresh'),
     path('api/',include('shop.urls'))
 ]
 

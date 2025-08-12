@@ -16,6 +16,7 @@ const Home = () => {
     return <h1>Loading...</h1>;
   }
 
+    console.log(products);
     console.log(categori);
 
   // If your API response has results array

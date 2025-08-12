@@ -1,17 +1,26 @@
 
-import { Link, NavLink } from "react-router-dom";
+import { Link, Navigate, NavLink } from "react-router-dom";
+import useIsLoggedIn from "../hooks/useIsLoggedin";
 
 
 
 const Navbar = () => {
     const user=true
+      const isLoggedIn = useIsLoggedIn();  // <-- এখানে
+  console.log(isLoggedIn);
+  
+  const handleLogOut=()=>{
+    <Navigate to='/logout'></Navigate>
+  }
     
     const links = (
         <>
             <li><NavLink to="/">Home</NavLink></li>
             
             
-            <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+            <li className="btn"><NavLink  to="/login">login</NavLink></li>
+             <li className="btn"><NavLink to="/logout">logout</NavLink></li>
+
 
         </>
     );

@@ -1,13 +1,17 @@
 from rest_framework.response import Response
 from rest_framework import views,viewsets,generics,mixins
-from .models import Product,Category
-from .serializers import ProductSerializers,CatagorySerializer
+from .models import Product,Category,Profile
+from .serializers import ProductSerializers,CatagorySerializer,UserSeralizer
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.contrib.auth.models import User
 
 
+
+
+
 class ProductView(generics.GenericAPIView,mixins.ListModelMixin,mixins.RetrieveModelMixin):
+    permission_classes = [AllowAny, ]
     queryset = Product.objects.all().order_by("-id")
     serializer_class=ProductSerializers
     lookup_field = "id"
@@ -21,6 +25,7 @@ class ProductView(generics.GenericAPIView,mixins.ListModelMixin,mixins.RetrieveM
 
 
 class CatagoryViewset(viewsets.ViewSet):
+    permission_classes = [AllowAny, ]
     def list(self,request):
         query = Category.objects.all()
         serializer = CatagorySerializer(query,many=True)
@@ -37,3 +42,11 @@ class CatagoryViewset(viewsets.ViewSet):
         data_data['category_product'] = catagory_product_serilazer.data
         all_data.append(data_data)
         return Response(all_data)
+
+
+
+
+class CreateUserView(generics.CreateAPIView):
+    queryset=User.objects.all()
+    serializer_class=UserSeralizer
+    permission_classes=[AllowAny]
