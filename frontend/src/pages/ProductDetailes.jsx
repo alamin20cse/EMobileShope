@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 
+
 const ProductDetailes = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [product, setProduct] = useState(null);
   const [categoryproduct, setCategoryproduct] = useState(null);
+
 
   // Helper function to get category data
   const getCategoryData = async (categoryId) => {
@@ -68,9 +70,9 @@ const ProductDetailes = () => {
     return <h1>Loading..</h1>;
   }
 
-  console.log(product);
-  console.log(product.category?.id);
-  console.log(categoryproduct);
+  // console.log(product);
+  // console.log(product.category?.id);
+  // console.log(categoryproduct);
 
   return (
     <div className="container mx-auto px-4">

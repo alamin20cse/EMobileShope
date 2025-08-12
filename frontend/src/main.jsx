@@ -17,6 +17,7 @@ import {
 import HomeMain from './pages/HomeMain.jsx';
 import Home from './pages/Home.jsx';
 import ProductDetailes from './pages/ProductDetailes.jsx';
+import CategoryProduct from './pages/CategoryProduct.jsx';
 
 
 
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
       {
         path:`/product/:id`,
         element:<ProductDetailes></ProductDetailes>
-      }
+      },
+      {
+        path:`/categori/:id`,
+        element:<CategoryProduct></CategoryProduct>
+      },
     ]
   },
 ]);
