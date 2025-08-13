@@ -1,5 +1,6 @@
 import React from "react";
 import useMyCart from "../hooks/useMyCart";
+import { NavLink } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, completeCarts, incompleteCarts, isLoading, error] = useMyCart();
@@ -11,6 +12,17 @@ const MyCart = () => {
   if (error) {
     return <h1>Error loading cart</h1>;
   }
+
+  // মোট দাম হিসাব
+  const totalAmount = incompleteCarts?.reduce((total, cartItem) => {
+    return (
+      total +
+      (cartItem.cartproduct?.reduce(
+        (sum, cp) => sum + (cp.subtotal || 0),
+        0
+      ) || 0)
+    );
+  }, 0);
 
   return (
     <div className="p-4">
@@ -26,15 +38,28 @@ const MyCart = () => {
           </tr>
         </thead>
         <tbody>
-          {incompleteCarts?.map((cartItem) =>
-            cartItem.cartproduct?.map((cp, index) => (
+          {incompleteCarts?.flatMap((cartItem) =>
+            cartItem.cartproduct?.map((cp, index) =>
               cp.product?.map((p) => (
-                <tr key={`${cartItem.id}-${cp.id}`} className="hover:bg-gray-100">
-                  <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-                  <td className="border border-gray-300 px-4 py-2">{p.title}</td>
-                  <td className="border border-gray-300 px-4 py-2">{cp.price}</td>
-                  <td className="border border-gray-300 px-4 py-2">{cp.quantity}</td>
-                  <td className="border border-gray-300 px-4 py-2">{cp.subtotal}</td>
+                <tr
+                  key={`${cartItem.id}-${cp.id}`}
+                  className="hover:bg-gray-100"
+                >
+                  <td className="border border-gray-300 px-4 py-2">
+                    {index + 1}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {p.title}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {cp.price}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {cp.quantity}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {cp.subtotal}
+                  </td>
                   <td className="border border-gray-300 px-4 py-2">
                     <button className="bg-red-500 text-white px-2 py-1 rounded">
                       Remove
@@ -42,10 +67,22 @@ const MyCart = () => {
                   </td>
                 </tr>
               ))
-            ))
+            )
           )}
         </tbody>
+        <tfoot>
+          <tr className="bg-gray-100 font-bold">
+            <td colSpan={4} className="border border-gray-300 px-4 py-2">
+              Total
+            </td>
+            <td className="border border-gray-300 px-4 py-2">
+              {totalAmount}
+            </td>
+            <td className="border border-gray-300 px-4 py-2"><button className="btn btn-primary">Order now</button></td>
+          </tr>
+        </tfoot>
       </table>
+      <NavLink className='btn btn-primary' to='/oldorder'>Old order</NavLink>
     </div>
   );
 };

@@ -25,6 +25,7 @@ import Register from './pages/RegisterPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import useIsLoggedIn from './hooks/useIsLoggedin.jsx';
 import MyCart from './pages/MyCart.jsx';
+import OldOrder from './pages/OldOrder.jsx';
 
 
 
@@ -72,7 +73,11 @@ const router = createBrowserRouter([
       },
       {
         path:'/mycart',
-        element:<MyCart></MyCart>
+        element:<Protected><MyCart></MyCart></Protected>
+      },
+      {
+        path:'/oldorder',
+        element:<Protected><OldOrder></OldOrder></Protected>
       }
     ]
   },
