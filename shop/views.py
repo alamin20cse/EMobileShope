@@ -1,11 +1,11 @@
 from rest_framework.response import Response
 from rest_framework import views,viewsets,generics,mixins
-from .models import Product,Category,Cart,CartProduct
-from .serializers import ProductSerializers,CatagorySerializer,UserSerializer,UserRegisterSerializer,CartSerializer,CartProductSerializer
+from .models import Product,Category,Cart,CartProduct,Order
+from .serializers import ProductSerializers,CatagorySerializer,UserSerializer,UserRegisterSerializer,CartSerializer,CartProductSerializer,OrderSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.contrib.auth import get_user_model
-
+ 
 
 
 
@@ -106,3 +106,33 @@ class MyCart(viewsets.ViewSet):
             "user": UserSerializer(request.user).data,
             "cart": all_data
         })
+
+
+class OldOrders(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated, ]
+
+    def list(self, request):
+        query = Order.objects.filter(cart__customer=request.user)
+        serializers = OrderSerializer(query, many=True)
+        all_data=[]
+        for order in serializers.data:
+            cartproduct = CartProduct.objects.filter(cart_id=order['cart']['id'])
+            cartproduct_serializer = CartProductSerializer(cartproduct,many=True)
+            order['cartproduct'] = cartproduct_serializer.data
+            all_data.append(order)
+        return Response(all_data)
+    def retrieve(self,request,pk=None):
+        try:
+            queryset = Order.objects.get(id=pk)
+            serializers = OrderSerializer(queryset)
+            data = serializers.data
+            all_date=[]
+            cartproduct = CartProduct.objects.filter(cart_id=data['cart']['id'])
+            cartproduct_serializer = CartProductSerializer(cartproduct,many=True)
+            data['cartproduct'] = cartproduct_serializer.data
+            all_date.append(data)
+            response_message = {"error":False,"data":all_date}
+        except:
+            response_message = {"error":True,"data":"No data Found for This id"}
+
+        return Response(response_message)

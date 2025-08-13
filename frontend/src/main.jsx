@@ -26,6 +26,8 @@ import ProfilePage from './pages/ProfilePage.jsx';
 import useIsLoggedIn from './hooks/useIsLoggedin.jsx';
 import MyCart from './pages/MyCart.jsx';
 import OldOrder from './pages/OldOrder.jsx';
+import OrderNow from './pages/OrderNow.jsx';
+import OldordersDetails from './pages/OldordersDetails.jsx';
 
 
 
@@ -78,6 +80,14 @@ const router = createBrowserRouter([
       {
         path:'/oldorder',
         element:<Protected><OldOrder></OldOrder></Protected>
+      },
+      {
+        path:'/ordernow',
+        element:<Protected><OrderNow></OrderNow></Protected>
+      },
+      {
+        path:"/oldorders/:id",
+        element:<Protected><OldordersDetails></OldordersDetails></Protected>
       }
     ]
   },

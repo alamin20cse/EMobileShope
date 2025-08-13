@@ -78,7 +78,7 @@ const MyCart = () => {
             <td className="border border-gray-300 px-4 py-2">
               {totalAmount}
             </td>
-            <td className="border border-gray-300 px-4 py-2"><button className="btn btn-primary">Order now</button></td>
+            <td className="border border-gray-300 px-4 py-2"> <NavLink className='btn btn-primary' to='/ordernow'>Order Now</NavLink></td>
           </tr>
         </tfoot>
       </table>
