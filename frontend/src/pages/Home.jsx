@@ -3,10 +3,12 @@ import useProducts from "../hooks/useProducts";
 import ProductCard from "./ProductCard";
 import useCategoryName from "../hooks/useCategoryName";
 import { Link } from "react-router-dom";
+import useProfile from "../hooks/useProfile";
 
 const Home = () => {
   const [products, isLoading] = useProducts();
    const  [categori, isLoadingcategory, refetch]=useCategoryName()
+
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -16,8 +18,8 @@ const Home = () => {
     return <h1>Loading...</h1>;
   }
 
-    console.log(products);
-    console.log(categori);
+    // console.log(products);
+    // console.log(categori);
 
   // If your API response has results array
   const allProducts = products?.results || [];

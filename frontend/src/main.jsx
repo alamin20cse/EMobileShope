@@ -5,6 +5,7 @@ import App from './App.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
+  Navigate,
 } from "react-router-dom";
 
 
@@ -21,10 +22,20 @@ import CategoryProduct from './pages/CategoryProduct.jsx';
 import Login from './pages/LoginPage.jsx';
 import Logout from './pages/Logout.jsx';
 import Register from './pages/RegisterPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
+import useIsLoggedIn from './hooks/useIsLoggedin.jsx';
 
 
 
 const queryClient = new QueryClient()
+const Protected = ({ children }) => {
+  const isLogged = useIsLoggedIn()
+  if (!isLogged) {
+    return <Navigate to="/login" replace />
+  }
+  return children
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,6 +64,10 @@ const router = createBrowserRouter([
       {
         path:'/register',
         element:<Register></Register>
+      },
+      {
+        path:'/profile',
+        element:<Protected><ProfilePage /></Protected>
       }
     ]
   },

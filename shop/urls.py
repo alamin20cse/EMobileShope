@@ -4,7 +4,7 @@ from rest_framework import routers
 
 route=routers.DefaultRouter()
 route.register('categori',CatagoryViewset,basename='CategoryView'),
-route.register('user', UserViewSet, basename='User')  # for profile endpoint
+route.register('user', UserViewSet, basename='user')  # for profile endpoint
 urlpatterns = [
     path("", include(route.urls)),
     path('product/',ProductView.as_view(),name='product'),

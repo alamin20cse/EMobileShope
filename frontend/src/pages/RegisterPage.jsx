@@ -4,12 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [photo, setPhoto] = useState(null);
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  
+
   const navigate = useNavigate();
- const BASE_URL = import.meta.env.VITE_BASE_URL;
-  console.log(BASE_URL);
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   const registerButton = async () => {
     if (password !== password2) {
@@ -17,10 +20,20 @@ const Register = () => {
       return;
     }
 
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("first_name", firstName);
+    formData.append("last_name", lastName);
+    formData.append("password", password);
+    formData.append("confirm_password", password2);
+    if (photo) formData.append("photo", photo);
+
     try {
-      const response = await axios.post(`${BASE_URL}/api/register/`, {
-        username,
-        password,
+      const response = await axios.post(`${BASE_URL}/api/register/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
 
       if (response.status === 201 || response.status === 200) {
@@ -34,56 +47,78 @@ const Register = () => {
   };
 
   return (
-   <div className="max-w-md mx-auto my-10 p-8 bg-white shadow-lg rounded-lg">
-  <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
+    <div className="max-w-md mx-auto my-10 p-8 bg-white shadow-lg rounded-lg">
+      <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
 
-  {/* Username */}
-  <div className="mb-4">
-    <label className="block text-gray-700 font-medium mb-2">Username</label>
-    <input
-      onChange={(e) => setUsername(e.target.value)}
-      type="text"
-      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      placeholder="Enter your username"
-    />
-  </div>
+      {/* Username */}
+      <input
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="mb-3 w-full px-4 py-2 border rounded-lg"
+      />
 
-  {/* Password */}
-  <div className="mb-4">
-    <label className="block text-gray-700 font-medium mb-2">Password</label>
-    <input
-      onChange={(e) => setPassword(e.target.value)}
-      type="password"
-      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      placeholder="Enter your password"
-    />
-  </div>
+      {/* Email */}
+      <input
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="mb-3 w-full px-4 py-2 border rounded-lg"
+      />
 
-  {/* Confirm Password */}
-  <div className="mb-6">
-    <label className="block text-gray-700 font-medium mb-2">Confirm Password</label>
-    <input
-      onChange={(e) => setPassword2(e.target.value)}
-      type="password"
-      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      placeholder="Confirm your password"
-    />
-  </div>
+      {/* First Name */}
+      <input
+        placeholder="First Name"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+        className="mb-3 w-full px-4 py-2 border rounded-lg"
+      />
 
-  {/* Buttons */}
-  <div className="flex items-center justify-between">
-    <button
-      onClick={registerButton}
-      className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors"
-    >
-      Register
-    </button>
-    <Link to="/login" className="text-blue-500 hover:underline">
-      Login Now
-    </Link>
-  </div>
-</div>
+      {/* Last Name */}
+      <input
+        placeholder="Last Name"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
+        className="mb-3 w-full px-4 py-2 border rounded-lg"
+      />
 
+      {/* Photo */}
+      <input
+        type="file"
+        onChange={(e) => setPhoto(e.target.files[0])}
+        className="mb-3 w-full"
+      />
+
+      {/* Password */}
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="mb-3 w-full px-4 py-2 border rounded-lg"
+      />
+
+      {/* Confirm Password */}
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        value={password2}
+        onChange={(e) => setPassword2(e.target.value)}
+        className="mb-6 w-full px-4 py-2 border rounded-lg"
+      />
+
+      <div className="flex items-center justify-between">
+        <button
+          onClick={registerButton}
+          className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600"
+        >
+          Register
+        </button>
+        <Link to="/login" className="text-blue-500 hover:underline">
+          Login Now
+        </Link>
+      </div>
+    </div>
   );
 };
 

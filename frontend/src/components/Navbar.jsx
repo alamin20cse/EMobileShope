@@ -24,7 +24,7 @@ const NavBar = () => {
       </li>
     
       <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink to="/profile">Profile</NavLink>
       </li>
     </>
   );
@@ -85,14 +85,12 @@ const NavBar = () => {
                   {/* User Profile Picture */}
                   <img
                     className="w-10 h-10 rounded-full border-2 border-gray-300 hover:border-blue-500"
-                    src={isLoggedIn || '/default-avatar.png'}
+                    src={'/vite.svg'}
                     alt="User Profile"
                   />
                   {/* Dropdown */}
                   <div className="absolute z-50 flex flex-col items-center top-full mt-0 group-hover:opacity-100 group-hover:visible opacity-0 invisible transition-opacity duration-300">
-                    <div className="bg-gray-800 text-white text-sm rounded px-2 py-1">
-                      {isLoggedIn || 'Anonymous'}
-                    </div>
+                    <div className="bg-gray-800 text-white text-sm rounded px-2 py-1">Profile</div>
                     <button
                       onClick={logOutbutton}
                       className="bg-red-500 text-white rounded px-3 py-1 shadow-md hover:bg-red-600 mt-1"
