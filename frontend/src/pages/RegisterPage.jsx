@@ -34,44 +34,56 @@ const Register = () => {
   };
 
   return (
-    <div className="container my-5 p-5">
-      <h1>Register</h1>
-      <div className="form-group">
-        <label>Username</label>
-        <input
-          onChange={(e) => setUsername(e.target.value)}
-          type="text"
-          className="form-control"
-          placeholder="Username"
-        />
-      </div>
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          className="form-control"
-          placeholder="Password"
-        />
-      </div>
-      <div className="form-group">
-        <label>Confirm Password</label>
-        <input
-          onChange={(e) => setPassword2(e.target.value)}
-          type="password"
-          className="form-control"
-          placeholder="Confirm Password"
-        />
-      </div>
-      <p>
-        <button onClick={registerButton} className="btn btn-success my-4">
-          Register
-        </button>
-        <Link to="/login" className="ms-3">
-          Login Now
-        </Link>
-      </p>
-    </div>
+   <div className="max-w-md mx-auto my-10 p-8 bg-white shadow-lg rounded-lg">
+  <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
+
+  {/* Username */}
+  <div className="mb-4">
+    <label className="block text-gray-700 font-medium mb-2">Username</label>
+    <input
+      onChange={(e) => setUsername(e.target.value)}
+      type="text"
+      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Enter your username"
+    />
+  </div>
+
+  {/* Password */}
+  <div className="mb-4">
+    <label className="block text-gray-700 font-medium mb-2">Password</label>
+    <input
+      onChange={(e) => setPassword(e.target.value)}
+      type="password"
+      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Enter your password"
+    />
+  </div>
+
+  {/* Confirm Password */}
+  <div className="mb-6">
+    <label className="block text-gray-700 font-medium mb-2">Confirm Password</label>
+    <input
+      onChange={(e) => setPassword2(e.target.value)}
+      type="password"
+      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Confirm your password"
+    />
+  </div>
+
+  {/* Buttons */}
+  <div className="flex items-center justify-between">
+    <button
+      onClick={registerButton}
+      className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors"
+    >
+      Register
+    </button>
+    <Link to="/login" className="text-blue-500 hover:underline">
+      Login Now
+    </Link>
+  </div>
+</div>
+
   );
 };
 

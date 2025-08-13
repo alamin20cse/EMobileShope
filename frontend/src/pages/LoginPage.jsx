@@ -29,35 +29,45 @@ const Login = () => {
   };
 
   return (
-    <div className="container my-5 p-5">
-      <h1>Login</h1>
-      <div className="form-group">
-        <label>Username</label>
-        <input
-          onChange={(e) => setUsername(e.target.value)}
-          type="text"
-          className="form-control"
-          placeholder="Username"
-        />
-      </div>
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          className="form-control"
-          placeholder="Password"
-        />
-      </div>
-      <p>
-        <button onClick={loginbutton} className="btn btn-success my-4">
-          Login
-        </button>
-        <Link to="/register" className="ms-3">
-          Register Now
-        </Link>
-      </p>
-    </div>
+    <div className="max-w-md mx-auto my-10 p-8 bg-white shadow-lg rounded-lg">
+  <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
+
+  {/* Username Field */}
+  <div className="mb-4">
+    <label className="block text-gray-700 font-medium mb-2">Username</label>
+    <input
+      onChange={(e) => setUsername(e.target.value)}
+      type="text"
+      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Enter your username"
+    />
+  </div>
+
+  {/* Password Field */}
+  <div className="mb-6">
+    <label className="block text-gray-700 font-medium mb-2">Password</label>
+    <input
+      onChange={(e) => setPassword(e.target.value)}
+      type="password"
+      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="Enter your password"
+    />
+  </div>
+
+  {/* Login Button & Register Link */}
+  <div className="flex items-center justify-between">
+    <button
+      onClick={loginbutton}
+      className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors"
+    >
+      Login
+    </button>
+    <Link to="/register" className="text-blue-500 hover:underline">
+      Register Now
+    </Link>
+  </div>
+</div>
+
   );
 };
 
