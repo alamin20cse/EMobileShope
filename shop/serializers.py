@@ -42,7 +42,21 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email', 'first_name', 'last_name', 'photo', 'is_staff', 'is_blocked')
 
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('id', 'username', 'email', 'first_name', 'last_name', 'photo', 'is_staff', 'is_blocked')
+
+
+
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = "__all__"
+        # depth = 1
+
+
+
+
+class CartProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartProduct
+        fields = "__all__"
+        depth = 1

@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
 import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
 import useIsLoggedIn from '../hooks/useIsLoggedin';
+import useMyCart from '../hooks/useMyCart';
 
 const NavBar = () => {
     const navigate = useNavigate();
 
   const isLoggedIn=useIsLoggedIn()
+  const [cart, completeCarts, incompleteCarts, isLoading, error]=useMyCart()
+
+  // console.log(incompleteCarts.length);
 
   const logOutbutton = () => {
     // এখানে আপনার লগআউট লজিক দিন (token clear, state update ইত্যাদি)
@@ -26,6 +30,14 @@ const NavBar = () => {
       <li>
         <NavLink to="/profile">Profile</NavLink>
       </li>
+    
+    
+      <li>
+        <NavLink to="/mycart">
+        <div className="badge badge-secondary">{incompleteCarts.length}+</div>
+        </NavLink>
+      </li>
+    
     </>
   );
  

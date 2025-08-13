@@ -172,3 +172,11 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'shop.User'
 
 
+
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=3),  # এখন 1 ঘণ্টা
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),     # এখন 7 দিন
+}

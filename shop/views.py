@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import views,viewsets,generics,mixins
-from .models import Product,Category
-from .serializers import ProductSerializers,CatagorySerializer,UserSerializer,UserRegisterSerializer
+from .models import Product,Category,Cart,CartProduct
+from .serializers import ProductSerializers,CatagorySerializer,UserSerializer,UserRegisterSerializer,CartSerializer,CartProductSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.contrib.auth import get_user_model
@@ -77,3 +77,32 @@ class UserViewSet(viewsets.ViewSet):
     def profile(self, request):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
+    
+
+
+
+
+
+
+
+
+
+class MyCart(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    def list(self, request):
+        carts = Cart.objects.filter(customer=request.user)
+        cart_serializer = CartSerializer(carts, many=True)
+
+        all_data = []
+        for cart in cart_serializer.data:
+            cart_copy = dict(cart)  # ডাটার কপি নেওয়া
+            cart_products = CartProduct.objects.filter(cart=cart["id"])
+            cart_product_serializer = CartProductSerializer(cart_products, many=True)
+            cart_copy["cartproduct"] = cart_product_serializer.data
+            all_data.append(cart_copy)
+
+        return Response({
+            "user": UserSerializer(request.user).data,
+            "cart": all_data
+        })

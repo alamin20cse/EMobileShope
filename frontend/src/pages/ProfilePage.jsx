@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ProfilePage = () => {
     const [profile, isLoading] = useProfile();
-    console.log(profile);
+    // console.log(profile);
 
     if (isLoading) return <div className="p-6 text-center">Loading...</div>;
 
