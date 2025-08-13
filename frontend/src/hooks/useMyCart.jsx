@@ -7,7 +7,7 @@ const useMyCart = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const token = localStorage.getItem(ACCESS_TOKEN);
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error,refetch  } = useQuery({
     queryKey: ['cart'],
     enabled: !!token, // token থাকলেই রিকোয়েস্ট যাবে
     queryFn: async () => {
@@ -30,7 +30,7 @@ const useMyCart = () => {
     return data?.cart?.filter(c => c.complit === false) || []
   }, [data])
 
-  return [data ?? null, completeCarts, incompleteCarts, isLoading, error]
+  return [data ?? null, completeCarts, incompleteCarts, isLoading, error,refetch ]
 }
 
 export default useMyCart

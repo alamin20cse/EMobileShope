@@ -7,9 +7,10 @@ const NavBar = () => {
     const navigate = useNavigate();
 
   const isLoggedIn=useIsLoggedIn()
-  const [cart, completeCarts, incompleteCarts, isLoading, error]=useMyCart()
+  const [cart, completeCarts, incompleteCarts, isLoading, error,refetch ]=useMyCart()
 
   // console.log(incompleteCarts.length);
+  // console.log(incompleteCarts[0]?.cartproduct?.length);
 
   const logOutbutton = () => {
     // এখানে আপনার লগআউট লজিক দিন (token clear, state update ইত্যাদি)
@@ -34,7 +35,7 @@ const NavBar = () => {
     
       <li>
         <NavLink to="/mycart">
-        <div className="badge badge-secondary">{incompleteCarts.length}+</div>
+        <div className="badge badge-secondary">{incompleteCarts[0]?.cartproduct?.length}+</div>
         </NavLink>
       </li>
     

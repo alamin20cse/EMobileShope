@@ -1,7 +1,38 @@
 import React from 'react';
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { ACCESS_TOKEN } from '../constants';
+import Axios from "axios";
+import useMyCart from '../hooks/useMyCart'; // তোমার useMyCart হুক
+
 const ProductCard = ({ product }) => {
-    return (
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const token = localStorage.getItem(ACCESS_TOKEN);
+
+  //from useMyCart  to  refetch 
+  const [, , , , , refetch] = useMyCart();
+
+  const addtocart = async (id) => {
+    try {
+      await Axios({
+        method: 'post',
+        url: `${BASE_URL}/api/addtocart/`,
+        data: { id: id },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      alert("Product added to cart!");
+
+      // কার্ট ডেটা আবার ফেচ
+      refetch();
+
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      alert("Failed to add product to cart.");
+    }
+  };
+
+  return (
     <div className="border rounded-md p-4 shadow hover:shadow-lg transition-shadow duration-300 max-w-sm">
       <img
         src={product.image}
@@ -10,7 +41,10 @@ const ProductCard = ({ product }) => {
       />
       <h2 className="text-xl font-semibold mt-2">{product.title}</h2>
       <p className="text-sm text-gray-500">{product.category.title}</p>
-      <p className="mt-1 text-gray-700 line-clamp-3">{(product.description).substring(0,70)}....     <Link to={`/product/${product.id}`} className='btn'>More ..</Link> </p>
+      <p className="mt-1 text-gray-700 line-clamp-3">
+        {(product.description).substring(0, 70)}....
+        <Link to={`/product/${product.id}`} className='btn'>More ..</Link>
+      </p>
       <div className="mt-3 flex justify-between items-center">
         <span className="text-red-600 font-bold">
           ৳{product.selling_price.toLocaleString()}
@@ -22,7 +56,7 @@ const ProductCard = ({ product }) => {
         )}
       </div>
       <div>
-        <button className='btn btn-primary'>Add to card</button>
+        <button onClick={() => addtocart(product.id)} className='btn btn-primary'>Add to cart</button>
       </div>
     </div>
   );

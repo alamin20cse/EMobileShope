@@ -3,7 +3,7 @@ import useMyCart from "../hooks/useMyCart";
 import { NavLink } from "react-router-dom";
 
 const MyCart = () => {
-  const [cart, completeCarts, incompleteCarts, isLoading, error] = useMyCart();
+  const [cart, completeCarts, incompleteCarts, isLoading, error,refetch ] = useMyCart();
 
   if (isLoading) {
     return <h1>Loading ....</h1>;
