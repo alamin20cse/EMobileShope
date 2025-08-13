@@ -1,10 +1,10 @@
 from rest_framework.response import Response
 from rest_framework import views,viewsets,generics,mixins
-from .models import Product,Category,Profile
-from .serializers import ProductSerializers,CatagorySerializer,UserSeralizer
+from .models import Product,Category
+from .serializers import ProductSerializers,CatagorySerializer,UserSerializer,UserRegisterSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated,AllowAny
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 
@@ -45,8 +45,35 @@ class CatagoryViewset(viewsets.ViewSet):
 
 
 
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from .serializers import UserRegisterSerializer, UserSerializer
 
-class CreateUserView(generics.CreateAPIView):
-    queryset=User.objects.all()
-    serializer_class=UserSeralizer
-    permission_classes=[AllowAny]
+
+User = get_user_model()
+
+# -------------------------
+# User Registration
+# -------------------------
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserRegisterSerializer
+    permission_classes = [AllowAny]  # Anyone can register
+
+    def perform_create(self, serializer):
+        user = serializer.save()
+        # Create token for the user automatically after registration
+        Token.objects.create(user=user)
+
+
+# -------------------------
+# User ViewSet (Profile)
+# -------------------------
+class UserViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    @action(detail=False, methods=['get'])
+    def profile(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)

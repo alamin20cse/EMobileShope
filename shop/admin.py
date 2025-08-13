@@ -3,12 +3,11 @@ from .models import *
 
 
 
+class UserAdmin(admin.ModelAdmin):
+    list_display='__all__',
+admin.site.register(User)
 
 
-
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ("id","prouser")
-admin.site.register(Profile,ProfileAdmin)
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display=("id",'title','date')

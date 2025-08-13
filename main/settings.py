@@ -172,3 +172,6 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated",
     ],
 }
+
+# Use custom user model
+AUTH_USER_MODEL = 'shop.User'
