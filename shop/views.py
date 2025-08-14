@@ -137,6 +137,18 @@ class OldOrders(viewsets.ViewSet):
 
         return Response(response_message)
     
+    
+    def destroy(self,request,pk=None):
+        try:
+            order_obj=Order.objects.get(id=pk)
+            cart_obj = Cart.objects.get(id=order_obj.cart.id)
+            order_obj.delete()
+            cart_obj.delete()
+            responsemessage = {"erroe":False,"message":"Order delated","order id":pk}
+        except:
+            responsemessage = {"erroe":True,"message":"Order Not Found"}
+        return Response(responsemessage)
+    
 
 
     def create(self,request):

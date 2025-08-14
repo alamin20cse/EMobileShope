@@ -9,7 +9,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
  const token = localStorage.getItem(ACCESS_TOKEN);
   //  console.log(token);
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error,refetch } = useQuery({
     queryKey: ['orders'],
     enabled: !!token, // only run if token exists
     queryFn: async () => {
@@ -23,7 +23,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
     staleTime: 0,
   })
 
-  return [data ?? null, isLoading, error]
+  return [data ?? null, isLoading, error,refetch]
 }
 
 export default useOldOrders

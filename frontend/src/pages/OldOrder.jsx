@@ -1,11 +1,42 @@
 import React from 'react';
 import useOldOrders from '../hooks/useOldOrders';
 import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
+import { ACCESS_TOKEN } from '../constants';
+import axios from 'axios';
 
 const OldOrder = () => {
 
-    const [orders, isLoading, error]=useOldOrders()
+    const [orders, isLoading, error,refetch]=useOldOrders()
+
+    
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
     console.log(orders);
+
+  const delateorderhistory = async (id) => {
+  if (!window.confirm("Are you sure you want to delete this order?")) {
+    return;
+  }
+
+  try {
+    await axios.delete(`${BASE_URL}/api/orders/${id}/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: { id: id }, // body data
+    });
+
+    alert("Order deleted successfully!");
+    refetch();
+  } catch (error) {
+    console.error("Error deleting order:", error);
+    alert("Failed to delete order.");
+  }
+};
+
+
     return (
         <div className="container">
           
