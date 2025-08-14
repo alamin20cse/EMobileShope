@@ -1,6 +1,8 @@
 import React from "react";
 import useMyCart from "../hooks/useMyCart";
 import { NavLink } from "react-router-dom";
+import { MdDeleteForever } from "react-icons/md";
+import { IoBagAddSharp,IoBagRemoveOutline  } from "react-icons/io5";
 
 const MyCart = () => {
   const [cart, completeCarts, incompleteCarts, isLoading, error,refetch ] = useMyCart();
@@ -23,6 +25,21 @@ const MyCart = () => {
       ) || 0)
     );
   }, 0);
+
+
+
+
+  const editcartproduct=(id)=>{
+
+  }
+
+  const delatecartproduct=(id)=>{
+
+  }
+
+  const updatecartproduct=(id)=>{
+
+  }
 
   return (
     <div className="p-4">
@@ -60,10 +77,10 @@ const MyCart = () => {
                   <td className="border border-gray-300 px-4 py-2">
                     {cp.subtotal}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    <button className="bg-red-500 text-white px-2 py-1 rounded">
-                      Remove
-                    </button>
+                  <td>
+                    <button onClick={() => editcartproduct(data.id)} className="btn btn-info mx-1"><IoBagRemoveOutline className="text-2xl " /> </button>
+                     <button onClick={() => delatecartproduct(data.id)} className="btn btn-danger mx-1"><MdDeleteForever className="text-red-600 text-3xl" /></button>
+                     <button onClick={() => updatecartproduct(data.id)} className="btn  mx-1"><IoBagAddSharp className="text-green-700 text-2xl"/></button>
                   </td>
                 </tr>
               ))

@@ -35,7 +35,7 @@ const NavBar = () => {
     
       <li>
         <NavLink to="/mycart">
-        <div className="badge badge-secondary">{incompleteCarts[0]?.cartproduct?.length}+</div>
+        <div className="badge badge-secondary">My Cart ({incompleteCarts[0]?.cartproduct?.length}+) </div>
         </NavLink>
       </li>
     
