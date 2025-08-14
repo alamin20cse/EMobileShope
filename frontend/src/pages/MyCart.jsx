@@ -36,13 +36,7 @@ const MyCart = () => {
 
 
 
-  const editcartproduct=(id)=>{
 
-  }
-
-  const delatecartproduct=(id)=>{
-
-  }
 
   const updatecartproduct=async (id)=>{
 
@@ -57,6 +51,50 @@ const MyCart = () => {
         }
       );
       alert("Product added to cart!");
+      refetch();
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      alert("Failed to add product to cart.");
+    }
+
+  }
+
+  const decreaseCartproduct=async (id)=>{
+
+     try {
+      await axios.post(
+        `${BASE_URL}/api/decreasecartproduct/`,
+        { id: id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert("Product Decrease to cart!");
+      refetch();
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      alert("Failed to add product to cart.");
+    }
+
+  }
+
+  
+  const delatecartproduct=async(id)=>{
+
+    
+     try {
+      await axios.post(
+        `${BASE_URL}/api/deletecartproduct/`,
+        { id: id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert("Product Decrease to cart!");
       refetch();
     } catch (error) {
       console.error("Error adding to cart:", error);
@@ -102,7 +140,7 @@ const MyCart = () => {
                     {cp.subtotal}
                   </td>
                   <td>
-                    <button onClick={() => editcartproduct(cp.id)} className="btn btn-info mx-1"><IoBagRemoveOutline className="text-2xl " /> </button>
+                    <button onClick={() => decreaseCartproduct(cp.id)} className="btn btn-info mx-1"><IoBagRemoveOutline className="text-2xl " /> </button>
                      <button onClick={() => delatecartproduct(cp.id)} className="btn btn-danger mx-1"><MdDeleteForever className="text-red-600 text-3xl" /></button>
                      <button onClick={() => updatecartproduct(cp.id)} className="btn  mx-1"><IoBagAddSharp className="text-green-700 text-2xl"/></button>
                   </td>

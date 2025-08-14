@@ -214,3 +214,31 @@ class UpdateCartProduct(views.APIView):
         cart_obj.total += cp_obj.price
         cart_obj.save()
         return Response({"message":"CartProduct Add Update","product":request.data['id']})
+
+class DecreaseCartProduct(views.APIView):
+    permission_classes=[IsAuthenticated, ]
+    
+    def post(self,request):
+        cp_obj = CartProduct.objects.get(id=request.data["id"])
+        cart_obj = cp_obj.cart
+
+        cp_obj.quantity -=1
+        cp_obj.subtotal -= cp_obj.price
+        cp_obj.save()
+
+        cart_obj.total -= cp_obj.price
+        cart_obj.save()
+        if(cp_obj.quantity==0):
+            cp_obj.delete()   
+        return Response({"message":"CartProduct Add Update","product":request.data['id']})
+    
+
+
+
+class Delatecartproduct(views.APIView):
+    permission_classes=[IsAuthenticated, ]
+ 
+    def post(self,request):
+        cp_obj = CartProduct.objects.get(id=request.data['id'])
+        cp_obj.delete()        
+        return Response({"message":"CartProduct Delated","product":request.data['id']})
