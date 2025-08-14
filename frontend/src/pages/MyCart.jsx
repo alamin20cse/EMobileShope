@@ -6,6 +6,7 @@ import { IoBagAddSharp,IoBagRemoveOutline  } from "react-icons/io5";
 
 const MyCart = () => {
   const [cart, completeCarts, incompleteCarts, isLoading, error,refetch ] = useMyCart();
+ 
 
   if (isLoading) {
     return <h1>Loading ....</h1>;

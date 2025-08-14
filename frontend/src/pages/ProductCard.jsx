@@ -1,17 +1,29 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN } from '../constants';
 import Axios from "axios";
 import useMyCart from '../hooks/useMyCart'; // তোমার useMyCart হুক
+import useIsLoggedIn from '../hooks/useIsLoggedin';
 
 const ProductCard = ({ product }) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const token = localStorage.getItem(ACCESS_TOKEN);
+  
+    const isLoggedIn=useIsLoggedIn()
+  // console.log(isLoggedIn);
+  const navigate=useNavigate()
+
 
   //from useMyCart  to  refetch 
   const [, , , , , refetch] = useMyCart();
 
   const addtocart = async (id) => {
+    if(!isLoggedIn)
+    {
+      navigate('/login')
+      return
+
+    }
     try {
       await Axios({
         method: 'post',
