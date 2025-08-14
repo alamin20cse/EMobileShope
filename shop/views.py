@@ -242,3 +242,17 @@ class Delatecartproduct(views.APIView):
         cp_obj = CartProduct.objects.get(id=request.data['id'])
         cp_obj.delete()        
         return Response({"message":"CartProduct Delated","product":request.data['id']})
+    
+
+
+
+class Delatefullcart(views.APIView):
+    permission_classes=[IsAuthenticated, ]
+    def post(self,request):
+        try:
+            card_obj = Cart.objects.get(id=request.data['id'])
+            card_obj.delete()
+            responsemessage = {"message":"Cart Delated"}
+        except:
+            responsemessage = {"message":"Somthing wright"}
+        return Response(responsemessage)

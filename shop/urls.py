@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import ProductView,CatagoryViewset,UserViewSet,RegisterView,MyCart,OldOrders,AddtoCartView,UpdateCartProduct,DecreaseCartProduct,Delatecartproduct
+from .views import ProductView,CatagoryViewset,UserViewSet,RegisterView,MyCart,OldOrders,AddtoCartView,UpdateCartProduct,DecreaseCartProduct,Delatecartproduct,Delatefullcart
 from rest_framework import routers
 
 route=routers.DefaultRouter()
@@ -17,6 +17,7 @@ urlpatterns = [
     path("updatecartproduct/",UpdateCartProduct.as_view(),name="updatecartproduct"),
     path("decreasecartproduct/",DecreaseCartProduct.as_view(),name="decreasecartproduct"),
     path("deletecartproduct/",Delatecartproduct.as_view(),name="deletecartproduct"),
+    path("deletefullcart/",Delatefullcart.as_view(),name="deletefullcart"),
 
     
 ]
