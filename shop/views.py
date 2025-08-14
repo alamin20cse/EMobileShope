@@ -136,6 +136,28 @@ class OldOrders(viewsets.ViewSet):
             response_message = {"error":True,"data":"No data Found for This id"}
 
         return Response(response_message)
+    
+
+
+    def create(self,request):
+        cart_id = request.data["cartId"]
+        cart_obj = Cart.objects.get(id=cart_id)
+        address = request.data["address"]
+        mobile = request.data["mobile"]
+        email = request.data["email"]
+        cart_obj.complit=True
+        cart_obj.save()
+        created_order = Order.objects.create(
+            cart=cart_obj,
+            address=address,
+            mobile=mobile,
+            email=email,
+            total=cart_obj.total,
+            discount=3,
+            order_status="Order Received"
+        )
+
+        return Response({"message":"order Resebed","cart id":cart_id,"order id":created_order.id})
 
 
 

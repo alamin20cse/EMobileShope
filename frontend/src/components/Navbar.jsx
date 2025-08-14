@@ -23,10 +23,6 @@ const NavBar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
    
-     
-      <li>
-        <NavLink to="/blogpublic">Blogs</NavLink>
-      </li>
     
       <li>
         <NavLink to="/profile">Profile</NavLink>

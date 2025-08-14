@@ -51,6 +51,7 @@ const OldordersDetails = () => {
             <th>Mobile</th>
             <th>Discount</th>
             <th>Products</th>
+            <th>Address</th>
           </tr>
         </thead>
         <tbody>
@@ -61,6 +62,7 @@ const OldordersDetails = () => {
             <td>{details.mobile}</td>
             <td>{details.discount}</td>
             <td>{details.cartproduct?.length}</td>
+            <td>{details.address}</td>
           </tr>
         </tbody>
       </table>

@@ -25,6 +25,7 @@ const MyCart = () => {
   // console.log(incompleteCarts[0].id);
 //Incomplete carts এর প্রথম cart এর সব cartproduct
   const InCompleteProduct = incompleteCarts[0]?.cartproduct || [];
+  console.log(InCompleteProduct);
 
   // মোট দাম হিসাব
   const totalAmount = InCompleteProduct.reduce(
@@ -138,7 +139,7 @@ const MyCart = () => {
             <th className="border border-gray-300 px-4 py-2">Action</th>
           </tr>
         </thead>
-  <tbody>
+       <tbody>
           {InCompleteProduct.map((cp, index) =>
             cp.product?.map((prod) => (
               <tr key={cp.id} className="hover:bg-gray-100">
@@ -147,6 +148,11 @@ const MyCart = () => {
                 <td className="border border-gray-300 px-4 py-2">{cp.price}</td>
                 <td className="border border-gray-300 px-4 py-2">{cp.quantity}</td>
                 <td className="border border-gray-300 px-4 py-2">{cp.subtotal}</td>
+                 <td>
+                    <button onClick={() => decreaseCartproduct(cp.id)} className="btn btn-info mx-1"><IoBagRemoveOutline className="text-2xl " /> </button>
+                     <button onClick={() => delatecartproduct(cp.id)} className="btn btn-danger mx-1"><MdDeleteForever className="text-red-600 text-3xl" /></button>
+                     <button onClick={() => updatecartproduct(cp.id)} className="btn  mx-1"><IoBagAddSharp className="text-green-700 text-2xl"/></button>
+                  </td>
               </tr>
             ))
           )}
