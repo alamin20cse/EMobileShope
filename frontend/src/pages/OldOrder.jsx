@@ -48,6 +48,7 @@ const OldOrder = () => {
                         <th>Totla</th>
                         <th>Product</th>
                         <th>Order Status</th>
+                        <th>Payment Status</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -61,6 +62,7 @@ const OldOrder = () => {
                                     <td>TK. {order?.total}</td>
                                     <td>{order?.cartproduct?.length}</td>
                                     <td>{order?.order_status}</td>
+                                    <td> {order?.payment_complit ? "Paid" : "Not Paid"}</td>
                                     <td><Link to={`/oldorders/${order.id}`} className="btn btn-success">Details</Link></td>
                                     <td><p onClick={() => delateorderhistory(order.id)} className="btn btn-danger">Delate</p></td>
                                 </tr>

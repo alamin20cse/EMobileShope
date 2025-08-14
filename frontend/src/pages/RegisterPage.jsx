@@ -86,7 +86,7 @@ const Register = () => {
       <input
         type="file"
         onChange={(e) => setPhoto(e.target.files[0])}
-        className="mb-3 w-full"
+        className="mb-3 w-full file-input"
       />
 
       {/* Password */}
