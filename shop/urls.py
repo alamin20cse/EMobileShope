@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import ProductView,CatagoryViewset,UserViewSet,RegisterView,MyCart,OldOrders,AddtoCartView
+from .views import ProductView,CatagoryViewset,UserViewSet,RegisterView,MyCart,OldOrders,AddtoCartView,UpdateCartProduct
 from rest_framework import routers
 
 route=routers.DefaultRouter()
@@ -13,7 +13,8 @@ urlpatterns = [
     path('product/<int:id>/',ProductView.as_view(),name='product-details'),
    
     path("register/", RegisterView.as_view(), name="register"),
-       path("addtocart/",AddtoCartView.as_view(),name="addtocart"),
+    path("addtocart/",AddtoCartView.as_view(),name="addtocart"),
+    path("updatecartproduct/",UpdateCartProduct.as_view(),name="updatecartproduct"),
 
     
 ]

@@ -196,3 +196,21 @@ class AddtoCartView(views.APIView):
             response_mesage = {'error':True,'message':"Product Not add!Somthing is Wromg"}
 
         return Response(response_mesage)
+    
+
+
+
+class UpdateCartProduct(views.APIView):
+    permission_classes=[IsAuthenticated, ]
+    
+    def post(self,request):
+        cp_obj = CartProduct.objects.get(id=request.data["id"])
+        cart_obj = cp_obj.cart
+
+        cp_obj.quantity +=1
+        cp_obj.subtotal += cp_obj.price
+        cp_obj.save()
+
+        cart_obj.total += cp_obj.price
+        cart_obj.save()
+        return Response({"message":"CartProduct Add Update","product":request.data['id']})

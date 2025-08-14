@@ -3,9 +3,15 @@ import useMyCart from "../hooks/useMyCart";
 import { NavLink } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 import { IoBagAddSharp,IoBagRemoveOutline  } from "react-icons/io5";
+import { ACCESS_TOKEN } from "../constants";
+import axios from "axios";
 
 const MyCart = () => {
   const [cart, completeCarts, incompleteCarts, isLoading, error,refetch ] = useMyCart();
+
+   const token = localStorage.getItem(ACCESS_TOKEN);
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
  
 
   if (isLoading) {
@@ -38,7 +44,24 @@ const MyCart = () => {
 
   }
 
-  const updatecartproduct=(id)=>{
+  const updatecartproduct=async (id)=>{
+
+     try {
+      await axios.post(
+        `${BASE_URL}/api/updatecartproduct/`,
+        { id: id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert("Product added to cart!");
+      refetch();
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      alert("Failed to add product to cart.");
+    }
 
   }
 
@@ -79,9 +102,9 @@ const MyCart = () => {
                     {cp.subtotal}
                   </td>
                   <td>
-                    <button onClick={() => editcartproduct(data.id)} className="btn btn-info mx-1"><IoBagRemoveOutline className="text-2xl " /> </button>
-                     <button onClick={() => delatecartproduct(data.id)} className="btn btn-danger mx-1"><MdDeleteForever className="text-red-600 text-3xl" /></button>
-                     <button onClick={() => updatecartproduct(data.id)} className="btn  mx-1"><IoBagAddSharp className="text-green-700 text-2xl"/></button>
+                    <button onClick={() => editcartproduct(cp.id)} className="btn btn-info mx-1"><IoBagRemoveOutline className="text-2xl " /> </button>
+                     <button onClick={() => delatecartproduct(cp.id)} className="btn btn-danger mx-1"><MdDeleteForever className="text-red-600 text-3xl" /></button>
+                     <button onClick={() => updatecartproduct(cp.id)} className="btn  mx-1"><IoBagAddSharp className="text-green-700 text-2xl"/></button>
                   </td>
                 </tr>
               ))
