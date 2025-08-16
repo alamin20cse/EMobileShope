@@ -156,7 +156,7 @@ const Dashboard = () => {
             <div className="flex flex-col w-full">
                 <div className="flex-1 p-4 bg-gray-50">
                     <div>
-                        DashBoar Main will add
+                      
                     </div>
                  
                     <Outlet />

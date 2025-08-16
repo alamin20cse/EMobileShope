@@ -29,6 +29,7 @@ import OldOrder from './pages/OldOrder.jsx';
 import OrderNow from './pages/OrderNow.jsx';
 import OldordersDetails from './pages/OldordersDetails.jsx';
 import Dashboard from './Dashboard/Dashboard.jsx';
+import DashboardMain from './Dashboard/DashboardMain.jsx';
 
 
 
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
     path:'/dashboard',
     element:<Protected><Dashboard></Dashboard></Protected>,
     children:[
+      {
+        path:'/dashboard',
+        element:<DashboardMain></DashboardMain>
+      },
 
        {
         path:'/dashboard/profile',
