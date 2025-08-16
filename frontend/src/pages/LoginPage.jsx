@@ -7,7 +7,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
    const BASE_URL = import.meta.env.VITE_BASE_URL;
-  console.log(BASE_URL);
+  // console.log(BASE_URL);
 
   const loginbutton = async () => {
     try {

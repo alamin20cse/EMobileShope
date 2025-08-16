@@ -28,6 +28,7 @@ import MyCart from './pages/MyCart.jsx';
 import OldOrder from './pages/OldOrder.jsx';
 import OrderNow from './pages/OrderNow.jsx';
 import OldordersDetails from './pages/OldordersDetails.jsx';
+import Dashboard from './Dashboard/Dashboard.jsx';
 
 
 
@@ -69,28 +70,41 @@ const router = createBrowserRouter([
         path:'/register',
         element:<Register></Register>
       },
-      {
-        path:'/profile',
-        element:<Protected><ProfilePage /></Protected>
-      },
-      {
-        path:'/mycart',
-        element:<Protected><MyCart></MyCart></Protected>
-      },
-      {
-        path:'/oldorder',
-        element:<Protected><OldOrder></OldOrder></Protected>
-      },
+     
+    
       {
         path:'/ordernow',
         element:<Protected><OrderNow></OrderNow></Protected>
       },
-      {
-        path:"/oldorders/:id",
-        element:<Protected><OldordersDetails></OldordersDetails></Protected>
-      }
+     
     ]
   },
+
+  {
+    path:'/dashboard',
+    element:<Protected><Dashboard></Dashboard></Protected>,
+    children:[
+
+       {
+        path:'/dashboard/profile',
+        element:<Protected><ProfilePage /></Protected>
+      },
+        {
+        path:'/dashboard/mycart',
+        element:<Protected><MyCart></MyCart></Protected>
+      },
+      
+      {
+        path:'/dashboard/oldorder',
+        element:<Protected><OldOrder></OldOrder></Protected>
+      },
+       {
+        path:"/dashboard/oldorders/:id",
+        element:<Protected><OldordersDetails></OldordersDetails></Protected>
+      }
+
+    ]
+  }
 ]);
 
 

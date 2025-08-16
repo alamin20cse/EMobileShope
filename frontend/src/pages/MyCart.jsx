@@ -175,7 +175,7 @@ const MyCart = () => {
       <div className="py-5">
         <button onClick={()=>DeleteFullCart(incompleteCarts[0].id)} className="btn btn-primary">Delete Full Cart</button>
       </div>
-      <NavLink className='btn btn-primary' to='/oldorder'>Old order</NavLink>
+      <NavLink className='btn btn-primary' to='/dashboard/oldorder'>Old order</NavLink>
     </div>
   );
 };

@@ -60,7 +60,9 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegisterSerializer
     permission_classes = [AllowAny]  # Anyone can register
+# 
 
+#that is not need if use jwt
     def perform_create(self, serializer):
         user = serializer.save()
         # Create token for the user automatically after registration
@@ -72,7 +74,8 @@ class RegisterView(generics.CreateAPIView):
 # -------------------------
 class UserViewSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
-
+#GET /api/user/profile/
+# api/router register name/functon name/
     @action(detail=False, methods=['get'])
     def profile(self, request):
         serializer = UserSerializer(request.user)

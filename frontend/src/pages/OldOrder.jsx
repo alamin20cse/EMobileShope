@@ -63,7 +63,7 @@ const OldOrder = () => {
                                     <td>{order?.cartproduct?.length}</td>
                                     <td>{order?.order_status}</td>
                                     <td> {order?.payment_complit ? "Paid" : "Not Paid"}</td>
-                                    <td><Link to={`/oldorders/${order.id}`} className="btn btn-success">Details</Link></td>
+                                    <td><Link to={`/dashboard/oldorders/${order.id}`} className="btn btn-success">Details</Link></td>
                                     <td><p onClick={() => delateorderhistory(order.id)} className="btn btn-danger">Delate</p></td>
                                 </tr>
                             )) :

@@ -25,12 +25,12 @@ const NavBar = () => {
    
     
       <li>
-        <NavLink to="/profile">Profile</NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
     
     
       <li>
-        <NavLink to="/mycart">
+        <NavLink to="/dashboard/mycart">
         <div className="badge badge-secondary">My Cart ({incompleteCarts[0]?.cartproduct?.length}+) </div>
         </NavLink>
       </li>
