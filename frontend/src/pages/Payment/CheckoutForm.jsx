@@ -103,7 +103,7 @@ const CheckoutForm = ({details}) => {
                 transactionId: paymentIntent.id,
                 date: new Date(),
                 orderId: details.id,
-                status: 'pending',
+              
             };
 
             try {

@@ -5,7 +5,7 @@ import { FaHome, FaUser, } from "react-icons/fa";
 
 import { BsCart4 } from "react-icons/bs";
 import { GiSkills } from "react-icons/gi";
-
+import { MdPayment } from "react-icons/md";
 
 
 import { AiOutlineLogin, AiOutlineLogout } from "react-icons/ai";
@@ -66,6 +66,14 @@ const Dashboard = () => {
                     className={({ isActive }) => isActive ? "text-white bg-blue-500" : "hover:text-white"}
                 >
                     <GiSkills /> Old Oreder
+                </NavLink>
+            </li>
+            <li>
+                <NavLink 
+                    to="/dashboard/payment" 
+                    className={({ isActive }) => isActive ? "text-white bg-blue-500" : "hover:text-white"}
+                >
+                    <MdPayment /> Payment info
                 </NavLink>
             </li>
          

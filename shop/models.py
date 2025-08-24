@@ -72,7 +72,7 @@ class Payment(models.Model):
     transactionId = models.CharField(max_length=255)
     date = models.DateTimeField()
     orderId = models.CharField(max_length=255)  # single id or comma separated
-    status = models.CharField(max_length=50, default='pending')
+
 
     def __str__(self):
         return self.transactionId

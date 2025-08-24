@@ -30,6 +30,7 @@ import OrderNow from './pages/OrderNow.jsx';
 import OldordersDetails from './pages/OldordersDetails.jsx';
 import Dashboard from './Dashboard/Dashboard.jsx';
 import DashboardMain from './Dashboard/DashboardMain.jsx';
+import PaymentInformation from './pages/PaymentInformation.jsx';
 
 
 
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
        {
         path:"/dashboard/oldorders/:id",
         element:<Protected><OldordersDetails></OldordersDetails></Protected>
+      },
+      {
+        path:'/dashboard/payment',
+        element:<PaymentInformation></PaymentInformation>
       }
 
     ]
