@@ -7,13 +7,14 @@ import axios from 'axios';
 const OldOrder = () => {
 
     const [orders, isLoading, error,refetch]=useOldOrders()
+    // console.log(orders);
 
     
     const token = localStorage.getItem(ACCESS_TOKEN);
     const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 
-    // console.log(orders);
+    console.log(orders);
 
   const delateorderhistory = async (id) => {
   if (!window.confirm("Are you sure you want to delete this order?")) {

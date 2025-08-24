@@ -10,7 +10,7 @@ import { ACCESS_TOKEN } from "../../constants";
 const CheckoutForm = ({details}) => {
 
     console.log(details);
-    // console.log(details.total);
+    console.log(details.id);
 
       const [profile, isLoadingProfile, Profileerror]=useProfile()
     //   console.log(profile);
@@ -30,8 +30,8 @@ const CheckoutForm = ({details}) => {
 
     const navigate = useNavigate();
     const totalPrice = details.total
-    console.log('cls: ',clientSecret);
-    console.log('stripe : ',stripe);
+    // console.log('cls: ',clientSecret);
+    // console.log('stripe : ',stripe);
 
     useEffect(() => {
         const createPaymentIntent = async () => {
@@ -94,7 +94,7 @@ const CheckoutForm = ({details}) => {
         }
 
         if (paymentIntent.status === 'succeeded') {
-            console.log('Transaction ID:', paymentIntent.id);
+            // console.log('Transaction ID:', paymentIntent.id);
             setTransactionId(paymentIntent.id);
 
             const payment = {
@@ -111,6 +111,17 @@ const CheckoutForm = ({details}) => {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 console.log('Payment saved:', res.data);
+                
+
+
+               await axios.patch(
+            `${BASE_URL}/api/orders/${details.id}/`,
+            { payment_complit: true },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+
+
 
                 Swal.fire({
                     position: "top-end",
@@ -119,6 +130,7 @@ const CheckoutForm = ({details}) => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
+                
 
                 navigate('/');
             } catch (err) {

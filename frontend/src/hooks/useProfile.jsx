@@ -5,7 +5,7 @@ import { ACCESS_TOKEN } from '../constants'
 const useProfile = () => {
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-console.log(BASE_URL);
+// console.log(BASE_URL);
  const token = localStorage.getItem(ACCESS_TOKEN);
   //  console.log(token);
 

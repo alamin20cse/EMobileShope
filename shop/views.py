@@ -112,7 +112,7 @@ class MyCart(viewsets.ViewSet):
 
 
 class OldOrders(viewsets.ViewSet):
-    permission_classes = [IsAuthenticated, ]
+    permission_classes = [AllowAny, ]
 
     def list(self, request):
         query = Order.objects.filter(cart__customer=request.user)
@@ -151,6 +151,31 @@ class OldOrders(viewsets.ViewSet):
         except:
             responsemessage = {"erroe":True,"message":"Order Not Found"}
         return Response(responsemessage)
+    
+
+    def update(self, request, pk=None):  # PUT
+        try:
+            order = Order.objects.get(id=pk)
+        except Order.DoesNotExist:
+            return Response({"error": True, "message": "Order not found"}, status=404)
+
+        serializer = OrderSerializer(order, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"error": False, "data": serializer.data})
+        return Response({"error": True, "errors": serializer.errors}, status=400)
+
+    def partial_update(self, request, pk=None):  # PATCH
+        try:
+            order = Order.objects.get(id=pk)
+        except Order.DoesNotExist:
+            return Response({"error": True, "message": "Order not found"}, status=404)
+
+        serializer = OrderSerializer(order, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"error": False, "data": serializer.data})
+        return Response({"error": True, "errors": serializer.errors}, status=400)
     
 
 
