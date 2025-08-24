@@ -36,7 +36,7 @@ const Home = () => {
 
 
 {/* category  with dropdown */}
-      {/* <div className="my-5">
+      <div className="my-5">
        <details className="dropdown">
   <summary className="btn btn-primary m-1">All Category</summary>
   <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
@@ -52,7 +52,7 @@ const Home = () => {
                 </div>
   </ul>
 </details>
-      </div> */}
+      </div>
 
 
 
