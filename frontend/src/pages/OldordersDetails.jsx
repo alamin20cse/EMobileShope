@@ -3,12 +3,24 @@ import { useParams } from 'react-router-dom';
 import { ACCESS_TOKEN } from '../constants';
 import api from '../api';
 
+
+
+import { loadStripe } from "@stripe/stripe-js";
+import {Elements} from "@stripe/react-stripe-js"
+import CheckoutForm from './Payment/CheckoutForm';
+
+
+
+
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const OldordersDetails = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const { id } = useParams();
   const token = localStorage.getItem(ACCESS_TOKEN);
 
   const [details, setDetails] = useState(null);
+  // console.log(details);
+
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -99,6 +111,27 @@ const OldordersDetails = () => {
           ))}
         </tbody>
       </table>
+
+
+
+
+
+
+
+
+<div>
+  Payment
+
+   
+           <Elements stripe={stripePromise}>
+            <CheckoutForm details={details}></CheckoutForm>
+
+
+           </Elements>
+</div>
+
+
+
     </div>
   );
 };

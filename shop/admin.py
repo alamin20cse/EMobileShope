@@ -28,6 +28,14 @@ admin.site.register(CartProduct)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ("id","cart","date")
 admin.site.register(Order,OrderAdmin)
+
+
+class PaymentAdmin(admin.ModelAdmin):
+    list_display='__all__',
+admin.site.register(Payment)
+
+
+
 # Profile
 # Category
 # Product

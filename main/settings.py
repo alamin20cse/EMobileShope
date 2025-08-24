@@ -180,3 +180,9 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=3),  # এখন 1 ঘণ্টা
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),     # এখন 7 দিন
 }
+
+
+
+
+
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")

@@ -58,3 +58,23 @@ class Order(models.Model):
     order_status = models.CharField(max_length=100,choices=ORDER_STATUS,default="Order Received")
     date = models.DateField(auto_now_add=True)
     payment_complit = models.BooleanField(default=False,blank=True, null=True)
+
+
+
+
+
+
+
+
+class Payment(models.Model):
+    email = models.EmailField()
+    price = models.FloatField()
+    transactionId = models.CharField(max_length=255)
+    date = models.DateTimeField()
+    orderId = models.CharField(max_length=255)  # single id or comma separated
+    status = models.CharField(max_length=50, default='pending')
+
+    def __str__(self):
+        return self.transactionId
+
+

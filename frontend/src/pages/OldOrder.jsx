@@ -13,7 +13,7 @@ const OldOrder = () => {
     const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 
-    console.log(orders);
+    // console.log(orders);
 
   const delateorderhistory = async (id) => {
   if (!window.confirm("Are you sure you want to delete this order?")) {

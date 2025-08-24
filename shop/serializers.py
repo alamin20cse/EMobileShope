@@ -68,3 +68,17 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = "__all__"
         depth = 1
+
+
+    
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = '__all__'
+
+
+
+
+
+
+

@@ -2,6 +2,10 @@ from django.urls import path,include
 from .views import ProductView,CatagoryViewset,UserViewSet,RegisterView,MyCart,OldOrders,AddtoCartView,UpdateCartProduct,DecreaseCartProduct,Delatecartproduct,Delatefullcart
 from rest_framework import routers
 
+
+from .views import CreatePaymentIntentView, PaymentListView, SavePaymentView
+
+
 route=routers.DefaultRouter()
 route.register('categori',CatagoryViewset,basename='CategoryView'),
 route.register('cart',MyCart,basename='cart'),
@@ -18,6 +22,12 @@ urlpatterns = [
     path("decreasecartproduct/",DecreaseCartProduct.as_view(),name="decreasecartproduct"),
     path("deletecartproduct/",Delatecartproduct.as_view(),name="deletecartproduct"),
     path("deletefullcart/",Delatefullcart.as_view(),name="deletefullcart"),
+
+
+
+    path('create-payment-intent/', CreatePaymentIntentView.as_view(), name='create-payment-intent'),
+    path('payments/', SavePaymentView.as_view(), name='save-payment'),
+    path('payments/<str:email>/', PaymentListView.as_view(), name='get-payments'),
 
     
 ]

@@ -63,7 +63,7 @@ console.log(incompleteCarts[0]?.id);
     alert("Order placed successfully!");
     refetch();
 
-    navigate('/oldorder')
+    navigate('/dashboard/oldorder')
   } catch (error) {
     console.error("Error placing order:", error);
     alert("Failed to place order.");
