@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import views,viewsets,generics,mixins
-from .models import Product,Category,Cart,CartProduct,Order
-from .serializers import ProductSerializers,CatagorySerializer,UserSerializer,UserRegisterSerializer,CartSerializer,CartProductSerializer,OrderSerializer
+from .models import Product,Category,Cart,CartProduct,Order,Review
+from .serializers import ProductSerializers,CatagorySerializer,UserSerializer,UserRegisterSerializer,CartSerializer,CartProductSerializer,OrderSerializer,ReviewSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.contrib.auth import get_user_model
@@ -379,6 +379,48 @@ class PaymentListView(APIView):
 
 
 
+
+
+
+
+# for review part
+
+
+class ReviewViewset(
+
+    mixins.CreateModelMixin,     # POST
+    mixins.ListModelMixin,       # GET (list)
+    mixins.RetrieveModelMixin,   # GET (detail)
+    mixins.DestroyModelMixin,    # DELETE
+    mixins.UpdateModelMixin,     # PUT / PATCH (update)
+    viewsets.GenericViewSet
+):
+    
+    queryset=Review.objects.all()
+    serializer_class=ReviewSerializer
+    def perform_create(self, serializer):
+        serializer.save(email=self.request.user.email) 
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            permission_classes = [AllowAny]
+        else:  # create, update, partial_update, destroy
+            permission_classes = [IsAuthenticated,]
+        return [permission() for permission in permission_classes]
+
+
+
+# views.py
+from rest_framework import generics
+from .models import Review
+from .serializers import ReviewSerializer
+
+class ForSpecificProductReview(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+
+    # Get reviews filtered by product_id from URL
+    def get_queryset(self):
+        product_id = self.kwargs.get('product_id')  # get product_id from URL
+        return Review.objects.filter(product=product_id)  # filter reviews for this product
 
 
 

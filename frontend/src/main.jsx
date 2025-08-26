@@ -31,6 +31,7 @@ import OldordersDetails from './pages/OldordersDetails.jsx';
 import Dashboard from './Dashboard/Dashboard.jsx';
 import DashboardMain from './Dashboard/DashboardMain.jsx';
 import PaymentInformation from './pages/PaymentInformation.jsx';
+import ReviewShow from './pages/ReviewShow.jsx';
 
 
 
@@ -111,7 +112,12 @@ const router = createBrowserRouter([
       {
         path:'/dashboard/payment',
         element:<PaymentInformation></PaymentInformation>
+      },
+        {
+        path:'/dashboard/review/:id',
+        element:<ReviewShow></ReviewShow>
       }
+  
 
     ]
   }

@@ -36,6 +36,10 @@ admin.site.register(Payment)
 
 
 
+class ReviewAdmin(admin.ModelAdmin):
+    list_display='__all__',
+    admin.site.register(Review)
+
 # Profile
 # Category
 # Product

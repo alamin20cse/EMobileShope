@@ -78,3 +78,14 @@ class Payment(models.Model):
         return self.transactionId
 
 
+
+
+class Review(models.Model):
+    description=models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="reviews")
+    email=models.EmailField()
+    image = models.ImageField(upload_to="review/")
+    def __str__(self):
+        return self.email
+

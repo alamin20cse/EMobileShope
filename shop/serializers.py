@@ -79,6 +79,16 @@ class PaymentSerializer(serializers.ModelSerializer):
 
 
 
+# serializers.py
+class ReviewSerializer(serializers.ModelSerializer):
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    
+    class Meta:
+        model = Review
+        fields = '__all__'
+        read_only_fields = ('email', 'date')
+
+
 
 
 

@@ -3,7 +3,7 @@ from .views import ProductView,CatagoryViewset,UserViewSet,RegisterView,MyCart,O
 from rest_framework import routers
 
 
-from .views import CreatePaymentIntentView, PaymentListView, SavePaymentView
+from .views import CreatePaymentIntentView, PaymentListView, SavePaymentView,ReviewViewset,ForSpecificProductReview
 
 
 route=routers.DefaultRouter()
@@ -11,6 +11,8 @@ route.register('categori',CatagoryViewset,basename='CategoryView'),
 route.register('cart',MyCart,basename='cart'),
 route.register('user', UserViewSet, basename='user')  # for profile endpoint
 route.register('orders', OldOrders, basename='orders')  
+
+route.register('review',ReviewViewset , basename='review') 
 urlpatterns = [
     path("", include(route.urls)),
     path('product/',ProductView.as_view(),name='product'),
@@ -28,6 +30,7 @@ urlpatterns = [
     path('create-payment-intent/', CreatePaymentIntentView.as_view(), name='create-payment-intent'),
     path('payments/', SavePaymentView.as_view(), name='save-payment'),
     path('payments/<str:email>/', PaymentListView.as_view(), name='get-payments'),
+    path('product-reviews/<int:product_id>/', ForSpecificProductReview.as_view(), name='product-reviews'),
 
     
 ]
