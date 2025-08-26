@@ -1,5 +1,5 @@
 from rest_framework.response import Response
-from rest_framework import views,viewsets,generics,mixins
+from rest_framework import views,viewsets,generics,mixins,filters
 from .models import Product,Category,Cart,CartProduct,Order,Review
 from .serializers import ProductSerializers,CatagorySerializer,UserSerializer,UserRegisterSerializer,CartSerializer,CartProductSerializer,OrderSerializer,ReviewSerializer
 from rest_framework.authentication import TokenAuthentication
@@ -8,21 +8,21 @@ from django.contrib.auth import get_user_model
  
 
 
-
-
-class ProductView(generics.GenericAPIView,mixins.ListModelMixin,mixins.RetrieveModelMixin):
-    permission_classes = [AllowAny, ]
+class ProductView(generics.GenericAPIView, mixins.ListModelMixin, mixins.RetrieveModelMixin):
+    permission_classes = [AllowAny]
     queryset = Product.objects.all().order_by("-id")
-    serializer_class=ProductSerializers
+    serializer_class = ProductSerializers
     lookup_field = "id"
 
-    def get(self,request,id=None):
+    # Search filter
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title',]  # যেসব ফিল্ডে search হবে
+
+    def get(self, request, id=None):
         if id:
             return self.retrieve(request)
         else:
             return self.list(request)
-
-
 
 class CatagoryViewset(viewsets.ViewSet):
     permission_classes = [AllowAny, ]

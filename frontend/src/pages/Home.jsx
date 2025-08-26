@@ -1,70 +1,60 @@
 import React, { useState } from "react";
 import useProducts from "../hooks/useProducts";
 import ProductCard from "./ProductCard";
-import useCategoryName from "../hooks/useCategoryName";
-import { Link } from "react-router-dom";
-import useProfile from "../hooks/useProfile";
 
 const Home = () => {
-  const [products, isLoading] = useProducts();
-   const  [categori, isLoadingcategory, refetch]=useCategoryName()
-
-
+  const [tempSearch, setTempSearch] = useState(""); // temporary typing state
+  const [searchTerm, setSearchTerm] = useState(""); // actual search term
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [products, isLoading] = useProducts(searchTerm);
 
   const itemsPerPage = 6;
 
-  if (isLoading | isLoadingcategory) {
-    return <h1>Loading...</h1>;
-  }
+  if (isLoading) return <h1>Loading...</h1>;
 
-    // console.log(products);
-    // console.log(categori);
+  const allProducts = products?.results || products || [];
 
-  // If your API response has results array
-  const allProducts = products?.results || [];
-
-  // Calculate pagination indexes
+  // Pagination
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
   const currentProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const totalPages = Math.ceil(allProducts.length / itemsPerPage);
 
+  // Trigger search on button click
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchTerm(tempSearch); // update actual search term
+    setCurrentPage(1); // reset pagination
+  };
+
   return (
     <div className="pt-10">
+      <form onSubmit={handleSearch} className="mb-5 flex gap-2">
+        <input
+          type="text"
+          placeholder="Search here"
+          className="input"
+          value={tempSearch}
+          onChange={(e) => setTempSearch(e.target.value)} // update temp state while typing
+        />
+        <button type="submit" className="btn btn-primary bg-amber-300">
+          Search
+        </button>
+      </form>
 
-
-{/* category  with dropdown */}
-      <div className="my-5">
-       <details className="dropdown">
-  <summary className="btn btn-primary m-1">All Category</summary>
-  <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-     <div className="col-md-3 mt-3">
-                    <h1>All Categoris</h1>
-                    {
-                        categori?.map((cata, i) => (
-                            <div className="p-2 m-2" key={i}>
-                                <Link to={`/categori/${cata.id}`} className="btn btn-success">{cata.title}</Link>
-                            </div>
-                        ))
-                    }
-                </div>
-  </ul>
-</details>
-      </div>
-
-
-
-      {/* Product Grid */}
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-2">
-        {currentProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-     
+        {currentProducts.length > 0 ? (
+          currentProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        ) : (
+          <p>No products found</p>
+        )}
       </div>
 
-      {/* Pagination Controls */}
+      {/* Pagination */}
       <div className="flex justify-center items-center mt-6 gap-2">
         <button
           className="px-3 py-1 bg-gray-300 rounded disabled:opacity-50"
