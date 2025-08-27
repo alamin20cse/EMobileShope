@@ -6,7 +6,7 @@ const HomeMain = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <Outlet></Outlet>
+           <div className='mx-auto w-10/12'> <Outlet></Outlet></div>
         </div>
     );
 };

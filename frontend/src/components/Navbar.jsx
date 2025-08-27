@@ -2,12 +2,19 @@ import React, { useContext } from 'react';
 import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
 import useIsLoggedIn from '../hooks/useIsLoggedin';
 import useMyCart from '../hooks/useMyCart';
+import useProfile from '../hooks/useProfile';
 
 const NavBar = () => {
     const navigate = useNavigate();
 
   const isLoggedIn=useIsLoggedIn()
   const [cart, completeCarts, incompleteCarts, isLoading, error,refetch ]=useMyCart()
+     const [profile, isLoadingPfofile] = useProfile();
+      const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
+    if (isLoadingPfofile) return <div className="p-6 text-center">Loading...</div>;
+    console.log(profile);
 
   // console.log(incompleteCarts.length);
   // console.log(incompleteCarts[0]?.cartproduct?.length);
@@ -41,7 +48,7 @@ const NavBar = () => {
 
   
     return (
-        <div className="navbar max-w-screen-xl mx-auto bg-opacity-30 z-30 bg-black text-white">
+        <div className="navbar  mx-auto bg-opacity-30 z-30 bg-black text-white">
           <div className="navbar-start">
             {/* Mobile Dropdown */}
             <div className="dropdown">
@@ -94,7 +101,7 @@ const NavBar = () => {
                   {/* User Profile Picture */}
                   <img
                     className="w-10 h-10 rounded-full border-2 border-gray-300 hover:border-blue-500"
-                    src={'/vite.svg'}
+                    src={`${BASE_URL}${profile.photo}` || '/vite.svg'}
                     alt="User Profile"
                   />
                   {/* Dropdown */}
