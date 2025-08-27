@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import useProducts from "../hooks/useProducts";
+
+import useCategoryName from "../hooks/useCategoryName";
+import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
 
 const Home = () => {
@@ -7,11 +10,16 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState(""); // actual search term
   const [currentPage, setCurrentPage] = useState(1);
 
+     const  [categori, isLoadingcategory, refetch]=useCategoryName()
+
+
+
+
   const [products, isLoading] = useProducts(searchTerm);
 
   const itemsPerPage = 6;
 
-  if (isLoading) return <h1>Loading...</h1>;
+if (isLoading | isLoadingcategory) { return <h1>Loading...</h1>};
 
   const allProducts = products?.results || products || [];
 
@@ -43,6 +51,32 @@ const Home = () => {
           Search
         </button>
       </form>
+
+
+      <div>
+
+{/* category  with dropdown */}
+      <div className="my-5">
+       <details className="dropdown">
+  <summary className="btn btn-primary m-1">All Category</summary>
+  <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+     <div className="col-md-3 mt-3">
+                    <h1>All Categoris</h1>
+                    {
+                        categori?.map((cata, i) => (
+                            <div className="p-2 m-2" key={i}>
+                                <Link to={`/categori/${cata.id}`} className="btn btn-success">{cata.title}</Link>
+                            </div>
+                        ))
+                    }
+                </div>
+  </ul>
+</details>
+      </div>
+
+
+
+      </div>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-2">
         {currentProducts.length > 0 ? (
