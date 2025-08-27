@@ -6,6 +6,8 @@ import useMyCart from '../hooks/useMyCart';
 import useIsLoggedIn from '../hooks/useIsLoggedin';
 import useProfile from '../hooks/useProfile';
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+
 
 const ProductCard = ({ product }) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -55,11 +57,23 @@ const ProductCard = ({ product }) => {
       });
 
       reset();
-      alert("Review submitted successfully!");
+      
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Review submitted successfully!",
+        showConfirmButton: false,
+        timer: 1500
+      });
       console.log("Review submitted:", res.data);
     } catch (err) {
       console.error("Error:", err);
-      alert("Error submitting review: " + (err.response?.data?.message || "Please check your input"));
+     Swal.fire({
+  icon: "error",
+  title: "Error submitting review",
+  text: err.response?.data?.message || "Please check your input",
+});
+
     }
   };
 
@@ -73,11 +87,22 @@ const ProductCard = ({ product }) => {
       await Axios.post(`${BASE_URL}/api/addtocart/`, { id }, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      alert("Product added to cart!");
+      Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Product added to cart!",
+  showConfirmButton: false,
+  timer: 1500
+});
+
       refetch();
     } catch (error) {
       console.error("Error adding to cart:", error);
-      alert("Failed to add product to cart.");
+      Swal.fire({
+  icon: "error",
+  title: "Failed to add product to cart",
+});
+
     }
   };
 

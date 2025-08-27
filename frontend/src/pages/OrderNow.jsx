@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import useMyCart from '../hooks/useMyCart';
 import { ACCESS_TOKEN } from '../constants';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const OrderNow = () => {
   const [cart, completeCarts, incompleteCarts, isLoading, error, refetch] = useMyCart();
@@ -61,13 +62,27 @@ console.log(incompleteCarts[0]?.id);
       }
     );
 
-    alert("Order placed successfully!");
+  
+    Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Order placed successfully!",
+  showConfirmButton: false,
+  timer: 1500
+});
     refetch();
 
     navigate('/dashboard/oldorder')
   } catch (error) {
     console.error("Error placing order:", error);
-    alert("Failed to place order.");
+   
+    Swal.fire({
+  position: "top-end",
+  icon: "error",
+  title: "Failed to place order.",
+  showConfirmButton: false,
+  timer: 1500
+});
   }
 };
 

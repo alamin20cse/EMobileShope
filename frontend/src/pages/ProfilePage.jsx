@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 
 const ProfilePage = () => {
     const [profile, isLoading] = useProfile();
-    // console.log(profile);
+      const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 
     if (isLoading) return <div className="p-6 text-center">Loading...</div>;
-
+    console.log(profile);
     if (!profile) {
         return (
             <div className="p-6 flex flex-col items-center justify-center min-h-screen">
@@ -32,7 +33,8 @@ const ProfilePage = () => {
                 <div className="flex flex-col items-center gap-4 mb-6">
                     <img
                         className="w-24 h-24 rounded-full border-2 border-gray-200"
-                        src={profile.photo || '/vite.svg'}
+                        src={`${BASE_URL}${profile.photo}` || '/vite.svg'}
+
                         alt="avatar"
                     />
                     <div className="text-center">

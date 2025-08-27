@@ -39,7 +39,7 @@ const Home = () => {
           value={tempSearch}
           onChange={(e) => setTempSearch(e.target.value)} // update temp state while typing
         />
-        <button type="submit" className="btn btn-primary bg-amber-300">
+        <button type="submit" className="btn btn-primary">
           Search
         </button>
       </form>
