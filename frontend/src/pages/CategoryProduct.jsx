@@ -1,8 +1,9 @@
 import Axios from "axios"; // possible but then use `new Axios()` (not common)
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductCard from "./ProductCard";
+
+
 
 const CategoryProduct = () => {
     
@@ -17,7 +18,10 @@ const CategoryProduct = () => {
                 method: 'get',
                 url: `${BASE_URL}/api/categori/${id}/`
             }).then(response => {
+
+
                 // console.log(response.data[0]);
+
                 setCataproduct(response.data[0])
             })
         }
@@ -33,8 +37,11 @@ const CategoryProduct = () => {
         <div>
           
       {/* Product Grid */}
+
      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-2">
+
       {/* map over the array inside cataproduct.category_product */}
+
       {cataproduct.category_product.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
@@ -42,6 +49,9 @@ const CategoryProduct = () => {
 
         </div>
     );
-};
+}; 
+
+
+
 
 export default CategoryProduct;

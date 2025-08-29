@@ -39,8 +39,23 @@ const ProductCard = ({ product }) => {
   // Review submit
   const onSubmit = async (data) => {
     try {
-      if (!product.id) return alert("Product ID missing!");
-      if (!profile?.email) return alert("Please login to submit review!");
+   if (!product.id) {
+  return Swal.fire({
+    icon: "error",
+    title: "Product ID Missing!",
+    text: "Please try again later.",
+    confirmButtonColor: "#3085d6",
+  });
+}
+
+if (!profile?.email) {
+  return Swal.fire({
+    icon: "warning",
+    title: "Login Required",
+    text: "Please login to submit a review!",
+    confirmButtonColor: "#f39c12",
+  });
+}
 
       const formData = new FormData();
       formData.append("description", data.description);
