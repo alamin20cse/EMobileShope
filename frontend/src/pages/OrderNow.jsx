@@ -4,6 +4,7 @@ import useMyCart from '../hooks/useMyCart';
 import { ACCESS_TOKEN } from '../constants';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { HelmetData } from 'react-helmet-async';
 
 const OrderNow = () => {
   const [cart, completeCarts, incompleteCarts, isLoading, error, refetch] = useMyCart();
@@ -90,6 +91,10 @@ console.log(incompleteCarts[0]?.id);
 
   return (
     <div>
+
+      <HelmetData>
+        <title>Order now </title>
+      </HelmetData>
       <h1>Order now page</h1>
 
       <table className="table-auto border-collapse border border-gray-300 w-full text-left">

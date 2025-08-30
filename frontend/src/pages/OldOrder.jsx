@@ -3,6 +3,7 @@ import useOldOrders from '../hooks/useOldOrders';
 import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
 import { ACCESS_TOKEN } from '../constants';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
 const OldOrder = () => {
 
@@ -40,6 +41,9 @@ const OldOrder = () => {
 
     return (
         <div className="container">
+            <Helmet>
+                <title>Emobile Shope | Oldorder </title>
+            </Helmet>
           
             <h1>Orders History</h1>
             <table className="table">

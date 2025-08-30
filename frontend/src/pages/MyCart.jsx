@@ -6,6 +6,7 @@ import { IoBagAddSharp, IoBagRemoveOutline } from "react-icons/io5";
 import { ACCESS_TOKEN } from "../constants";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyCart = () => {
   const [cart, completeCarts, incompleteCarts, isLoading, error, refetch] =
@@ -176,6 +177,9 @@ const MyCart = () => {
 
   return (
     <div className="p-4">
+      <Helmet>
+        <title>Emobile Shope | My Cart</title>
+      </Helmet>
       <table className="table-auto border-collapse border border-gray-300 w-full text-left">
         <thead>
           <tr className="bg-gray-200">

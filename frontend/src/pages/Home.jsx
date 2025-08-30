@@ -4,6 +4,7 @@ import useProducts from "../hooks/useProducts";
 import useCategoryName from "../hooks/useCategoryName";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const [tempSearch, setTempSearch] = useState(""); // temporary typing state
@@ -39,6 +40,13 @@ if (isLoading | isLoadingcategory) { return <h1>Loading...</h1>};
 
   return (
     <div className="pt-10">
+
+      <Helmet>
+        <title>Emobile Shome | Home</title>
+      </Helmet>
+
+
+
       <form onSubmit={handleSearch} className="mb-5 flex gap-2">
         <input
           type="text"

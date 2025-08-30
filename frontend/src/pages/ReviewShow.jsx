@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 import { ACCESS_TOKEN } from '../constants';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
 const ReviewShow = () => {
     const { id } = useParams();
@@ -41,6 +42,7 @@ useEffect(() => {
 
     return (
         <div className="container mx-auto px-4 py-8">
+            <Helmet>Review </Helmet>
             <h1 className="text-2xl font-bold mb-6">Reviews for Product #{id}</h1>
             
             {reviews.length === 0 ? (

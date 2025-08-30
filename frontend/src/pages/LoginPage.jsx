@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -30,6 +31,13 @@ const Login = () => {
 
   return (
     <div className="max-w-md mx-auto my-10 p-8 bg-white shadow-lg rounded-lg">
+
+      <Helmet>
+        <title>Login </title>
+      </Helmet>
+
+
+
   <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
 
   {/* Username Field */}

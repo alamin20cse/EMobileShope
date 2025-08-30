@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import usePaymentInfo from "../hooks/usePaymentInfo";
+import { Helmet } from "react-helmet-async";
 
 const PaymentInformation = () => {
   const [paymentinfo, isLoading, error, refetch] = usePaymentInfo();
@@ -15,6 +16,9 @@ const PaymentInformation = () => {
 
   return (
     <div className="p-4">
+      <Helmet>
+        <title>Dashboard | Payment Information </title>
+      </Helmet>
       <h2 className="text-xl font-bold mb-3">Payment Information</h2>
 
       {paymentinfo.length > 0 ? (

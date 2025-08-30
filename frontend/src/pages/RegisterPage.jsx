@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -48,6 +49,10 @@ const Register = () => {
 
   return (
     <div className="max-w-md mx-auto my-10 p-8 bg-white shadow-lg rounded-lg">
+
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
 
       {/* Username */}

@@ -8,6 +8,7 @@ import api from '../api';
 import { loadStripe } from "@stripe/stripe-js";
 import {Elements} from "@stripe/react-stripe-js"
 import CheckoutForm from './Payment/CheckoutForm';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -51,6 +52,9 @@ const OldordersDetails = () => {
 
   return (
     <div className="container p-3">
+      <Helmet>
+        <title>Emobile Shope | Old Order Details </title>
+      </Helmet>
       <h1 className="mb-4">Old Order Details</h1>
 
       {/* Order Info Table */}

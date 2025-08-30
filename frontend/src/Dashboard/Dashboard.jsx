@@ -11,6 +11,7 @@ import { MdPayment } from "react-icons/md";
 import { AiOutlineLogin, AiOutlineLogout } from "react-icons/ai";
 import useIsLoggedIn from "../hooks/useIsLoggedin";
 import useMyCart from "../hooks/useMyCart";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -133,7 +134,9 @@ const Dashboard = () => {
 
     return (
         <div className="flex flex-col lg:flex-row min-h-screen">
-             
+             <Helmet>
+                <title>Emobile Shope | Dashboard</title>
+             </Helmet>
        
    
             {/* Navbar for Mobile */}

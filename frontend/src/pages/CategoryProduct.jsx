@@ -2,6 +2,7 @@ import Axios from "axios"; // possible but then use `new Axios()` (not common)
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductCard from "./ProductCard";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -35,6 +36,9 @@ const CategoryProduct = () => {
   console.log(cataproduct);
     return (
         <div>
+          <Helmet>
+            <title>Product Category</title>
+          </Helmet>
           
       {/* Product Grid */}
 

@@ -6,6 +6,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 
 
@@ -32,17 +33,26 @@ import Dashboard from './Dashboard/Dashboard.jsx';
 import DashboardMain from './Dashboard/DashboardMain.jsx';
 import PaymentInformation from './pages/PaymentInformation.jsx';
 import ReviewShow from './pages/ReviewShow.jsx';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 
 
 const queryClient = new QueryClient()
+
+
 const Protected = ({ children }) => {
+   const loaction=useLocation();
+
+
   const isLogged = useIsLoggedIn()
   if (!isLogged) {
-    return <Navigate to="/login" replace />
+     return <Navigate state={loaction.pathname} to='/login' > </Navigate>
   }
   return children
 }
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -111,11 +121,11 @@ const router = createBrowserRouter([
       },
       {
         path:'/dashboard/payment',
-        element:<PaymentInformation></PaymentInformation>
+        element:<Protected><PaymentInformation></PaymentInformation></Protected>
       },
         {
         path:'/dashboard/review/:id',
-        element:<ReviewShow></ReviewShow>
+        element:<Protected><ReviewShow></ReviewShow></Protected>
       }
   
 
@@ -126,8 +136,13 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <QueryClientProvider client={queryClient}>
+  <HelmetProvider>
+
+     <QueryClientProvider client={queryClient}>
   <RouterProvider router={router} />
   </QueryClientProvider>
+
+
+  </HelmetProvider>
   </StrictMode>,
 )

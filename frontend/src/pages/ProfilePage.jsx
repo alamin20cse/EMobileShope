@@ -1,6 +1,7 @@
 import React from 'react';
 import useProfile from '../hooks/useProfile';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const ProfilePage = () => {
     const [profile, isLoading] = useProfile();
@@ -27,6 +28,10 @@ const ProfilePage = () => {
 
     return (
         <div className="flex justify-center items-start p-6 min-h-screen bg-gray-50">
+
+            <Helmet>
+                <title>Emobile Shope | Profile </title>
+            </Helmet>
             <div className="bg-white shadow-lg rounded-lg p-6 max-w-md w-full">
                 <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">My Profile</h2>
 

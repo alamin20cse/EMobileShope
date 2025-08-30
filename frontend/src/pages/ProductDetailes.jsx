@@ -5,6 +5,7 @@ import ProductCard from './ProductCard';
 import { ACCESS_TOKEN } from '../constants';
 import useIsLoggedIn from '../hooks/useIsLoggedin';
 import useMyCart from '../hooks/useMyCart';
+import { Helmet } from 'react-helmet-async';
 
 const ProductDetailes = () => {
   const { id } = useParams();
@@ -78,6 +79,11 @@ const ProductDetailes = () => {
 
   return (
     <div className="container mx-auto px-4">
+      <Helmet>
+        <title>Product Details</title>
+      </Helmet>
+
+
       <div className="grid md:grid-cols-2 gap-6 my-6">
         <div>
           <img
