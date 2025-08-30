@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {
+   const location = useLocation();
+    const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
    const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -22,7 +24,8 @@ const Login = () => {
       localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
 
       // Redirect to home page
-      window.location.href = "/";
+      // window.location.href = "/";
+      navigate(location?.state ? location.state : '/');
     } catch (error) {
       alert("Username OR Password is invalid. Try again!");
       console.error(error);
