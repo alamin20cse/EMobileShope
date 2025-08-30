@@ -5,6 +5,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import { Helmet } from "react-helmet-async";
 import ani1 from '../components/LoginAnimation.json';
 import Lottie from "lottie-react";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const location = useLocation();
@@ -22,11 +23,22 @@ const Login = () => {
 
       localStorage.setItem(ACCESS_TOKEN, response.data.access);
       localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
+         Swal.fire({
+                                    icon: "success",
+                                    title: "Login success",
+                                    text: "Welcome to the platform!",
+                                });
 
    window.location.href = location?.state ? location.state : "/";
+  
 
     } catch (error) {
-      alert("Username OR Password is invalid. Try again!");
+     Swal.fire({
+       icon: "error",
+       title: "Login Failed",
+       text: "User name or passwor invalid",
+       confirmButtonText: "OK"
+     });
       console.error(error);
     }
   };
