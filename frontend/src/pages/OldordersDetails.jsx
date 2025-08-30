@@ -10,7 +10,8 @@ import {Elements} from "@stripe/react-stripe-js"
 import CheckoutForm from './Payment/CheckoutForm';
 import { Helmet } from 'react-helmet-async';
 
-
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { jsPDF } from 'jspdf';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
@@ -50,11 +51,86 @@ const OldordersDetails = () => {
 
   const products = details?.cartproduct;
 
+
+
+
+  
+
+  // --- PDF Download Function ---
+const handleDownloadPDF = async () => {
+  const doc = new jsPDF('p', 'mm', 'a4');
+  doc.setFontSize(16);
+  doc.text(`Order Details #${id}`, 10, 10);
+
+  let yOffset = 20;
+  doc.setFontSize(12);
+
+  // Order info
+  doc.text(`Date: ${details.date}`, 10, yOffset);
+  yOffset += 6;
+  doc.text(`Email: ${details.email}`, 10, yOffset);
+  yOffset += 6;
+  doc.text(`Mobile: ${details.mobile}`, 10, yOffset);
+  yOffset += 6;
+  doc.text(`Total: ${details.total}`, 10, yOffset);
+  yOffset += 6;
+  doc.text(`Discount: ${details.discount}`, 10, yOffset);
+  yOffset += 6;
+  doc.text(`Address: ${details.address}`, 10, yOffset);
+  yOffset += 10;
+
+  // Products
+  doc.text("Products:", 10, yOffset);
+  yOffset += 6;
+
+  for (let i = 0; i < products.length; i++) {
+    const prod = products[i];
+    doc.text(`${i + 1}. ${prod.product[0]?.title}`, 10, yOffset);
+    yOffset += 6;
+    doc.text(`Price: ${prod.price}, Quantity: ${prod.quantity}, Subtotal: ${prod.subtotal}`, 10, yOffset);
+    yOffset += 10;
+
+    // নতুন পেজ যদি bottom-এ পৌঁছায়
+    if (yOffset > 250) {
+      doc.addPage();
+      yOffset = 10;
+    }
+  }
+
+  doc.save(`Order_${id}_Details.pdf`);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="container p-3">
       <Helmet>
         <title>Emobile Shope | Old Order Details </title>
       </Helmet>
+
+      <div>
+           <button
+                onClick={handleDownloadPDF}
+                className="mb-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 hover:scale-105 transition-all duration-200"
+>
+            
+                Download PDF
+            </button>
+      </div>
       <h1 className="mb-4">Old Order Details</h1>
 
       {/* Order Info Table */}
