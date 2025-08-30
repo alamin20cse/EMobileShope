@@ -14,7 +14,7 @@ const NavBar = () => {
 
 
     if (isLoadingPfofile) return <div className="p-6 text-center">Loading...</div>;
-    console.log(profile);
+    // console.log(profile);
 
   // console.log(incompleteCarts.length);
   // console.log(incompleteCarts[0]?.cartproduct?.length);
@@ -106,7 +106,7 @@ const NavBar = () => {
                   />
                   {/* Dropdown */}
                   <div className="absolute z-50 flex flex-col items-center top-full mt-0 group-hover:opacity-100 group-hover:visible opacity-0 invisible transition-opacity duration-300">
-                    <div className="bg-gray-800 text-white text-sm rounded px-2 py-1">Profile</div>
+                    <div className="bg-gray-800 text-white text-sm rounded px-2 py-1">{profile?.username}</div>
                     <button
                       onClick={logOutbutton}
                       className="bg-red-500 text-white rounded px-3 py-1 shadow-md hover:bg-red-600 mt-1"
