@@ -1,9 +1,10 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from cloudinary.models import CloudinaryField
 
 class User(AbstractUser):
-    photo = models.ImageField(upload_to='user_photos/', null=True, blank=True)
+    photo = CloudinaryField('image', blank=True, null=True)  # Cloudinary handles storage
     is_blocked = models.BooleanField(default=False)
 
 
@@ -18,7 +19,7 @@ class Product(models.Model):
     title = models.CharField(max_length=200)
     date = models.DateField(auto_now_add=True)
     category = models.ForeignKey(Category,on_delete=models.SET_NULL,blank=True, null=True)
-    image = models.ImageField(upload_to="products/")
+    image = CloudinaryField('image', folder='products/', null=True, blank=True)  # CloudinaryField
     marcket_price = models.PositiveIntegerField()
     selling_price = models.PositiveIntegerField()
     description = models.TextField()
@@ -85,7 +86,7 @@ class Review(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="reviews")
     email=models.EmailField()
-    image = models.ImageField(upload_to="review/")
+    image = CloudinaryField('image', folder='review/', null=True, blank=True)  # CloudinaryField
     def __str__(self):
         return self.email
 

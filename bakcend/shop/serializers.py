@@ -8,7 +8,14 @@ class ProductSerializers(serializers.ModelSerializer):
         model = Product
         fields = "__all__"
         depth = 1
+     
 
+    def to_representation(self, instance):
+        """Override to return full Cloudinary URL for image."""
+        rep = super().to_representation(instance)
+        if instance.image:
+            rep['image'] = instance.image.url  # CloudinaryField full URL
+        return rep
 
 class CatagorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,12 +44,18 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'first_name', 'last_name', 'photo', 'is_staff', 'is_blocked')
 
-
+    def to_representation(self, instance):
+        """Override to return full Cloudinary URL for photo."""
+        rep = super().to_representation(instance)
+        if instance.photo:  # Use 'photo' instead of 'image'
+            rep['photo'] = instance.photo.url  # CloudinaryField full URL
+        return rep
 
 
 
@@ -87,8 +100,13 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = '__all__'
         read_only_fields = ('email', 'date')
+     
 
-
-
+    def to_representation(self, instance):
+        """Override to return full Cloudinary URL for image."""
+        rep = super().to_representation(instance)
+        if instance.image:
+            rep['image'] = instance.image.url  # Cloudinary full URL
+        return rep
 
 
