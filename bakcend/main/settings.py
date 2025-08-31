@@ -30,7 +30,7 @@ SECRET_KEY = 'f3(^&n#pyb#&j!u753gz*lfh10j*7@fertv5em-m38bf5^c063'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -158,14 +158,9 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
 
 
-# STATIC_URL = '/static/'
-# # MEDIA_URL = '/media/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/','static')]
-# STATIC_ROOT = os.path.join(BASE_DIR,'build/', 'staticroot/')
-# # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build', 'static')]  # React static
@@ -174,7 +169,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collectstatic
 
 
 CORS_URLS_REGEX = r'^/api.*'
-# CORS_ORIGIN_ALLOW_ALL = True
+
 
 
 
@@ -233,7 +228,7 @@ print("Cloudinary Secret:", os.getenv("API_SECRET"))
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React dev server
-    # "https://yourfrontenddomain.com",
+    
     'http://localhost:5173',
     'https://e-mobile-shope-l5v9mmdov-alamins-projects-54ed542f.vercel.app',
    
