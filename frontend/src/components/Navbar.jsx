@@ -79,7 +79,7 @@ const NavBar = () => {
             {/* Logo */}
             <Link to="/" className="btn btn-ghost text-xl">
               {/* <img className="h-10 w-10 rounded-full" src={logo} alt="Logo" /> */}
-              <h1 className='text-2xl font-bold'>EMobile shope</h1>
+              <h1 className='text-2xl font-bold'>EMobile shop</h1>
             </Link>
           </div>
     

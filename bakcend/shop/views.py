@@ -5,6 +5,10 @@ from .serializers import ProductSerializers,CatagorySerializer,UserSerializer,Us
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.contrib.auth import get_user_model
+
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import action
+from .serializers import UserRegisterSerializer, UserSerializer
  
 
 
@@ -45,10 +49,6 @@ class CatagoryViewset(viewsets.ViewSet):
 
 
 
-from rest_framework.authtoken.models import Token
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from .serializers import UserRegisterSerializer, UserSerializer
 
 
 User = get_user_model()

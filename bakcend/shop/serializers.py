@@ -79,7 +79,7 @@ class PaymentSerializer(serializers.ModelSerializer):
 
 
 
-# serializers.py
+
 class ReviewSerializer(serializers.ModelSerializer):
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
     
