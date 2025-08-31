@@ -37,12 +37,12 @@ const ProfilePage = () => {
                 <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">My Profile</h2>
 
                 <div className="flex flex-col items-center gap-4 mb-6">
-                    <img
-                        className="w-24 h-24 rounded-full border-2 border-gray-200"
-                        src={`${BASE_URL}${profile.photo}` || '/vite.svg'}
+                   <img
+  className="w-24 h-24 rounded-full border-2 border-gray-200"
+  src={profile.photo || '/vite.svg'}
+  alt="avatar"
+/>
 
-                        alt="avatar"
-                    />
                     <div className="text-center">
                         <div className="text-xl font-semibold text-gray-800">{profile.username}</div>
                         <div className="text-gray-500">{profile.email}</div>

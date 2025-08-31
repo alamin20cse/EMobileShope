@@ -102,7 +102,7 @@ const NavBar = () => {
                   {/* User Profile Picture */}
                   <img
                     className="w-10 h-10 rounded-full border-2 border-gray-300 hover:border-blue-500"
-                    src={`${BASE_URL}${profile?.photo}` || '/vite.svg'}
+                   src={profile?.photo || '/vite.svg'}
                     alt="User Profile"
                   />
                   {/* Dropdown */}
