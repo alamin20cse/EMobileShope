@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import usePaymentInfo from "../hooks/usePaymentInfo";
 import { Helmet } from "react-helmet-async";
+import Loading from "./Loading";
 
 const PaymentInformation = () => {
   const [paymentinfo, isLoading, error, refetch] = usePaymentInfo();
 
   if (isLoading) {
-    return <h1>Loading....</h1>;
+    return <Loading></Loading>
   }
 
   if (error) {

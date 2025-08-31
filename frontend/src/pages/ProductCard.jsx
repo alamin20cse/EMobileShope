@@ -7,6 +7,7 @@ import useIsLoggedIn from '../hooks/useIsLoggedin';
 import useProfile from '../hooks/useProfile';
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import Loading from './Loading';
 
 
 const ProductCard = ({ product }) => {
@@ -30,10 +31,10 @@ const ProductCard = ({ product }) => {
 
   // loading / no-product check
   if (!product) {
-    return <h1>Loading product...</h1>;
+    return <Loading></Loading>
   }
   if (isLoading) {
-    return <h1>Loading profile...</h1>;
+    return <Loading></Loading>
   }
 
   // Review submit

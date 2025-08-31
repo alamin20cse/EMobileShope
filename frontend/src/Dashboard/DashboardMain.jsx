@@ -1,11 +1,12 @@
 import React from 'react';
 import useOldOrders from '../hooks/useOldOrders';
+import Loading from '../pages/Loading';
 
 const DashboardMain = () => {
       const [orders, isLoading, error,refetch]=useOldOrders()
       if(isLoading)
       {
-        return <h1>Loading......</h1>
+        return <Loading></Loading>
       }
       console.log(orders);
     return (

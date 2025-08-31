@@ -12,6 +12,7 @@ import { AiOutlineLogin, AiOutlineLogout } from "react-icons/ai";
 import useIsLoggedIn from "../hooks/useIsLoggedin";
 import useMyCart from "../hooks/useMyCart";
 import { Helmet } from "react-helmet-async";
+import Loading from "../pages/Loading";
 
 
 
@@ -26,6 +27,11 @@ const Dashboard = () => {
   console.log(isLoggedIn);
    
   const [cart, completeCarts, incompleteCarts, isLoading, error,refetch ]=useMyCart()
+
+  if(isLoading)
+  {
+    return <Loading></Loading>
+  }
    
    
     

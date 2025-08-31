@@ -21,6 +21,11 @@ Built with **React.js (Frontend)** and **Django REST Framework (Backend)**, inte
 - 📱 Responsive UI with Tailwind CSS  
 - 🔒 Secure API with JWT Authentication  
 - 🔍 Advanced search functionality
+- 🎞️ Carousel / Swiper for featured products
+- 🎨 Lottie Animations for loading & empty states
+- 🔔 SweetAlert2 for interactive alerts
+- 📄 PDF generation for invoices & order summary
+
 
 ---
 ## 👨‍💼 Admin Credentials

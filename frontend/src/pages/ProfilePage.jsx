@@ -2,13 +2,14 @@ import React from 'react';
 import useProfile from '../hooks/useProfile';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import Loading from './Loading';
 
 const ProfilePage = () => {
     const [profile, isLoading] = useProfile();
       const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 
-    if (isLoading) return <div className="p-6 text-center">Loading...</div>;
+    if (isLoading) return <Loading></Loading>
     console.log(profile);
     if (!profile) {
         return (

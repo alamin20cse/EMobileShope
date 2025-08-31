@@ -3,6 +3,7 @@ import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
 import useIsLoggedIn from '../hooks/useIsLoggedin';
 import useMyCart from '../hooks/useMyCart';
 import useProfile from '../hooks/useProfile';
+import Loading from '../pages/Loading';
 
 const NavBar = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const NavBar = () => {
       const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 
-    if (isLoadingPfofile) return <div className="p-6 text-center">Loading...</div>;
+    if (isLoadingPfofile) return <Loading></Loading>
     // console.log(profile);
 
   // console.log(incompleteCarts.length);

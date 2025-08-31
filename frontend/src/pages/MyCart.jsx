@@ -7,6 +7,7 @@ import { ACCESS_TOKEN } from "../constants";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import Loading from "./Loading";
 
 const MyCart = () => {
   const [cart, completeCarts, incompleteCarts, isLoading, error, refetch] =
@@ -16,7 +17,7 @@ const MyCart = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   if (isLoading) {
-    return <h1>Loading ....</h1>;
+    return <Loading></Loading>
   }
 
   if (error) {

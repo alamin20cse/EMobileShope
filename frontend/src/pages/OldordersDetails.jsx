@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet-async';
 
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 import { jsPDF } from 'jspdf';
+import Loading from './Loading';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
@@ -46,7 +47,7 @@ const OldordersDetails = () => {
   }, [BASE_URL, id, token]);
 
   if (!details) {
-    return <h1>Loading...</h1>;
+    return <Loading></Loading>
   }
 
   const products = details?.cartproduct;

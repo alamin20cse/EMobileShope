@@ -6,6 +6,7 @@ import { ACCESS_TOKEN } from '../constants';
 import useIsLoggedIn from '../hooks/useIsLoggedin';
 import useMyCart from '../hooks/useMyCart';
 import { Helmet } from 'react-helmet-async';
+import Loading from './Loading';
 
 const ProductDetailes = () => {
   const { id } = useParams();
@@ -74,7 +75,7 @@ const ProductDetailes = () => {
   };
 
   if (!product) {
-    return <h1>Loading..</h1>;
+    return <Loading></Loading>
   }
 
   return (

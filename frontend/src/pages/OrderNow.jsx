@@ -5,6 +5,7 @@ import { ACCESS_TOKEN } from '../constants';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { HelmetData } from 'react-helmet-async';
+import Loading from './Loading';
 
 const OrderNow = () => {
   const [cart, completeCarts, incompleteCarts, isLoading, error, refetch] = useMyCart();
@@ -38,7 +39,7 @@ console.log(incompleteCarts[0]?.id);
         // "totalTaKa":totalTaKa
     }
 
-  if (isLoading) return <h1>Loading ....</h1>;
+  if (isLoading) return <Loading></Loading>
   if (error) return <h1>Error loading cart</h1>;
 
 

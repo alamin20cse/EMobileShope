@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import useProfile from "../../hooks/useProfile";
 import { ACCESS_TOKEN } from "../../constants";
+import Loading from "../Loading";
 
 const CheckoutForm = ({details}) => {
 
@@ -13,6 +14,10 @@ const CheckoutForm = ({details}) => {
     console.log(details.id);
 
       const [profile, isLoadingProfile, Profileerror]=useProfile()
+      if(isLoadingProfile)
+      {
+        return <Loading></Loading>
+      }
     //   console.log(profile);
   
 

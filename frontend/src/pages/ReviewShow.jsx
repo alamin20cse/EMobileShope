@@ -4,6 +4,7 @@ import Axios from 'axios';
 import { ACCESS_TOKEN } from '../constants';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
+import Loading from './Loading';
 
 const ReviewShow = () => {
     const { id } = useParams();
@@ -37,7 +38,7 @@ useEffect(() => {
 
 
 
-    if (loading) return <div className="text-center py-8">Loading reviews...</div>;
+    if (loading) return <Loading></Loading>
     if (error) return <div className="text-center py-8 text-red-500">Error: {error}</div>;
 
     return (

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
 import { Helmet } from "react-helmet-async";
 import Bannar from "../components/Bannar";
+import Loading from "./Loading";
 
 const Home = () => {
   const [tempSearch, setTempSearch] = useState(""); // temporary typing state
@@ -21,7 +22,10 @@ const Home = () => {
 
   const itemsPerPage = 8;
 
-if (isLoading | isLoadingcategory) { return <h1>Loading...</h1>};
+if (isLoading | isLoadingcategory)
+   { 
+    return <Loading></Loading>
+  };
 
   const allProducts = products?.results || products || [];
 

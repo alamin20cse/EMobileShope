@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductCard from "./ProductCard";
 import { Helmet } from "react-helmet-async";
+import Loading from "./Loading";
 
 
 
@@ -31,7 +32,7 @@ const CategoryProduct = () => {
 
     if(!cataproduct)
     {
-        return <h1>Loading</h1>
+        return <Loading></Loading>
     }
   console.log(cataproduct);
     return (
