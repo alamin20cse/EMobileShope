@@ -131,8 +131,8 @@ if (!profile?.email) {
       <h2 className="text-xl font-semibold mt-2">{product.title}</h2>
       <p className="text-sm text-gray-500">{product.category?.title}</p>
       <p className="mt-1 text-gray-700 line-clamp-3">
-        {(product.description).substring(0, 70)}....
-        <Link to={`/product/${product.id}`} className='btn'>More ..</Link>
+        {(product.description).substring(0, 50)}....
+        <Link to={`/product/${product.id}`} className='btn text-blue-400'>More ..</Link>
       </p>
 
       <div className="mt-3 flex justify-between items-center">
@@ -164,15 +164,15 @@ if (!profile?.email) {
         <input
           type="file"
           {...register("image")}
-          className="mb-2 file-input"
+          className="mb-2 file-input file-input-sm text-sm"
         />
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-blue-400 text-white  px-2 py-1 text-sm rounded hover:bg-blue-700"
         >
           Submit Review
         </button>
-        <Link to={`/dashboard/review/${product.id}`} className="btn btn-primary mx-5">
+        <Link to={`/dashboard/review/${product.id}`} className="bg-blue-400 text-white ml-1 px-2 py-1 text-sm rounded hover:bg-blue-700">
   Show review
 </Link>
 

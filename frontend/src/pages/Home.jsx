@@ -5,6 +5,7 @@ import useCategoryName from "../hooks/useCategoryName";
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductCard";
 import { Helmet } from "react-helmet-async";
+import Bannar from "../components/Bannar";
 
 const Home = () => {
   const [tempSearch, setTempSearch] = useState(""); // temporary typing state
@@ -44,6 +45,8 @@ if (isLoading | isLoadingcategory) { return <h1>Loading...</h1>};
       <Helmet>
         <title>Emobile Shome | Home</title>
       </Helmet>
+
+      <Bannar></Bannar>
 
 
 
@@ -86,7 +89,7 @@ if (isLoading | isLoadingcategory) { return <h1>Loading...</h1>};
 
       </div>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-2">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">
         {currentProducts.length > 0 ? (
           currentProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
