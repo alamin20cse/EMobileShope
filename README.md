@@ -106,7 +106,7 @@ npm run dev
 ```
 ## Frontend .env.local
 ```
-VITE_BASE_URL=http://127.0.0.1:8000
+VITE_BASE_URL=https://emobileshope.onrender.com
 VITE_Payment_Gateway_PK='your_publishable_key'
 
 ```
