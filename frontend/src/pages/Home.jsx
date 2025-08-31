@@ -93,7 +93,7 @@ if (isLoading | isLoadingcategory)
 
       </div>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-2">
         {currentProducts.length > 0 ? (
           currentProducts.map((product) => (
             <ProductCard key={product.id} product={product} />

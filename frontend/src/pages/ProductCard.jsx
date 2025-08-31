@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
   if (isLoading) {
     return <Loading></Loading>
   }
-  console.log(product);
+  // console.log(product);
   // Review submit
   const onSubmit = async (data) => {
     try {
