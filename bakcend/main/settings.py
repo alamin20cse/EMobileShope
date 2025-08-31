@@ -231,5 +231,6 @@ CORS_ALLOWED_ORIGINS = [
     
     'http://localhost:5173',
     'https://e-mobile-shope-l5v9mmdov-alamins-projects-54ed542f.vercel.app',
+    'https://emobileshope.netlify.app'
    
 ]
