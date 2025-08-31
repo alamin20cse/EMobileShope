@@ -19,7 +19,7 @@ const Home = () => {
 
   const [products, isLoading] = useProducts(searchTerm);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
 
 if (isLoading | isLoadingcategory) { return <h1>Loading...</h1>};
 

@@ -131,7 +131,7 @@ if (!profile?.email) {
       <h2 className="text-xl font-semibold mt-2">{product.title}</h2>
       <p className="text-sm text-gray-500">{product.category?.title}</p>
       <p className="mt-1 text-gray-700 line-clamp-3">
-        {(product.description).substring(0, 50)}....
+        {(product.description).substring(0, 40)}....
         <Link to={`/product/${product.id}`} className='btn text-blue-400'>More ..</Link>
       </p>
 
@@ -170,7 +170,7 @@ if (!profile?.email) {
           type="submit"
           className="bg-blue-400 text-white  px-2 py-1 text-sm rounded hover:bg-blue-700"
         >
-          Submit Review
+          Submit
         </button>
         <Link to={`/dashboard/review/${product.id}`} className="bg-blue-400 text-white ml-1 px-2 py-1 text-sm rounded hover:bg-blue-700">
   Show review
