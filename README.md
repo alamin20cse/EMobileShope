@@ -6,7 +6,7 @@ Built with **React.js (Frontend)** and **Django REST Framework (Backend)**, inte
 ---
 
 ## 🌐 Live Demo
-👉 [Click Here to Visit Live Project](https://your-live-demo-link.com)
+👉 [Click Here to Visit Live Project](https://emobileshope.netlify.app)
 
 ---
 
