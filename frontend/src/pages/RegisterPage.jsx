@@ -72,7 +72,7 @@ Swal.fire({
       </div>
 
       {/* Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center bg-base-100 p-6">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6">
         <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
           <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
 
