@@ -51,6 +51,7 @@ const OldordersDetails = () => {
   }
 
   const products = details?.cartproduct;
+  // console.log(products);
 
 
 
@@ -169,7 +170,7 @@ const handleDownloadPDF = async () => {
           <tr>
             <th>SN</th>
             <th>Product</th>
-            <th>Image</th>
+            {/* <th>Image</th> */}
             <th>Price</th>
             <th>Quantity</th>
             <th>Subtotal</th>
@@ -180,13 +181,13 @@ const handleDownloadPDF = async () => {
             <tr key={i}>
               <td>{i + 1}</td>
               <td>{data.product[0]?.title}</td>
-              <td>
+              {/* <td>
                 <img
                   src={data.product[0]?.image}
                   alt={data.product[0]?.title}
                   style={{ width: "60px", height: "60px", objectFit: "cover" }}
                 />
-              </td>
+              </td> */}
               <td>{data.price}</td>
               <td>{data.quantity}</td>
               <td>{data.subtotal}</td>
