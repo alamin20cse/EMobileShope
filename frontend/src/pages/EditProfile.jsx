@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useProfile from "../hooks/useProfile";
 import { Helmet } from "react-helmet-async";
 import { ACCESS_TOKEN } from "../constants";
-import Swal from "sweetalert2"; // ✅ sweetalert2 import
+import Swal from "sweetalert2"; 
 
 const EditProfile = () => {
   const [profile, isLoading] = useProfile();
@@ -48,10 +48,12 @@ const EditProfile = () => {
     }
 
     try {
-      const res = await fetch(`${BASE_URL}/user/update_profile/`, {
+     const res = await fetch(`${BASE_URL}/api/user/update_profile/`, {
+
         method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
+          headers: {
+         
+              Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`, 
         },
         body: data,
       });
