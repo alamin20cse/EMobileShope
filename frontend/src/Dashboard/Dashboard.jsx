@@ -158,7 +158,7 @@ const Dashboard = () => {
                             {link}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">Md. Al-Amin Hossain</a>
+                    <a className="btn btn-ghost text-xl">Dashboard </a>
                 </div>
             </div>
 
