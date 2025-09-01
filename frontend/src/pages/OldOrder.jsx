@@ -46,7 +46,8 @@ const OldOrder = () => {
             </Helmet>
           
             <h1>Orders History</h1>
-            <table className="table">
+          <div className='overflow-x-auto'>
+              <table className="table">
                 <thead>
                     <tr>
                         <th>SN</th>
@@ -83,6 +84,7 @@ const OldOrder = () => {
                     }
                 </tbody>
             </table>
+          </div>
         </div>
     );
 };

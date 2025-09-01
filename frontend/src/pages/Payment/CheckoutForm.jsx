@@ -14,10 +14,7 @@ const CheckoutForm = ({details}) => {
     console.log(details.id);
 
       const [profile, isLoadingProfile, Profileerror]=useProfile()
-      if(isLoadingProfile)
-      {
-        return <Loading></Loading>
-      }
+   
     //   console.log(profile);
   
 
@@ -146,7 +143,7 @@ const CheckoutForm = ({details}) => {
     };
 
     return (
-        <div className="my-5">
+        <div className="my-5 overflow-x-auto">
             <form onSubmit={handleSubmit}>
                 <CardElement
                     options={{

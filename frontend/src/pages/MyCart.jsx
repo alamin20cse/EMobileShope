@@ -181,7 +181,8 @@ const MyCart = () => {
       <Helmet>
         <title>Emobile Shope | My Cart</title>
       </Helmet>
-      <table className="table-auto border-collapse border border-gray-300 w-full text-left">
+     <div className="overflow-x-auto">
+       <table className="table-auto border-collapse border border-gray-300 w-full text-left">
         <thead>
           <tr className="bg-gray-200">
             <th className="border border-gray-300 px-4 py-2">SN</th>
@@ -247,6 +248,7 @@ const MyCart = () => {
           </tr>
         </tfoot>
       </table>
+     </div>
 
       <div className="py-5">
         <button

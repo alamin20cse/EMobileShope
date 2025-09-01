@@ -135,7 +135,8 @@ const handleDownloadPDF = async () => {
       <h1 className="mb-4">Old Order Details</h1>
 
       {/* Order Info Table */}
-      <table className="table table-bordered">
+      <div className='overflow-x-auto'>
+        <table className="table table-bordered">
         <thead>
           <tr>
             <th>Date</th>
@@ -160,6 +161,7 @@ const handleDownloadPDF = async () => {
         </tbody>
       </table>
 
+      </div>
       {/* Product Details Table */}
       <h2 className="mt-4">Product Details</h2>
       <table className="table table-bordered">
