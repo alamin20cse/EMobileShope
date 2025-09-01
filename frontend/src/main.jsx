@@ -34,6 +34,7 @@ import DashboardMain from './Dashboard/DashboardMain.jsx';
 import PaymentInformation from './pages/PaymentInformation.jsx';
 import ReviewShow from './pages/ReviewShow.jsx';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import EditProfile from './pages/EditProfile.jsx';
 
 
 
@@ -126,6 +127,10 @@ const router = createBrowserRouter([
         {
         path:'/dashboard/review/:id',
         element:<Protected><ReviewShow></ReviewShow></Protected>
+      },
+      {
+        path:'/dashboard/edit-profile',
+        element:<EditProfile></EditProfile>
       }
   
 

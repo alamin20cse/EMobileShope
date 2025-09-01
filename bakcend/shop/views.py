@@ -60,13 +60,7 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegisterSerializer
     permission_classes = [AllowAny]  # Anyone can register
-# 
 
-#that is not need if use jwt
-    def perform_create(self, serializer):
-        user = serializer.save()
-        # Create token for the user automatically after registration
-        Token.objects.create(user=user)
 
 
 # -------------------------
@@ -80,7 +74,20 @@ class UserViewSet(viewsets.ViewSet):
     def profile(self, request):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
-    
+     
+    # PUT/PATCH /api/user/profile/  → Update logged in user’s profile
+    @action(detail=False, methods=['put', 'patch'])
+    def update_profile(self, request):
+        serializer = UserSerializer(
+            request.user,
+            data=request.data,
+            partial=True  # allows partial update (PATCH)
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 
