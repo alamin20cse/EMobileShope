@@ -5,6 +5,7 @@ import ProductCard from './ProductCard';
 import { ACCESS_TOKEN } from '../constants';
 import useIsLoggedIn from '../hooks/useIsLoggedin';
 import useMyCart from '../hooks/useMyCart';
+import useProfile from '../hooks/useProfile';
 import { Helmet } from 'react-helmet-async';
 import Loading from './Loading';
 
@@ -16,29 +17,38 @@ const ProductDetailes = () => {
   const [product, setProduct] = useState(null);
   const [categoryproduct, setCategoryproduct] = useState(null);
 
-  // সব হুক টপ-লেভেলে
   const token = localStorage.getItem(ACCESS_TOKEN);
+
   const isLoggedIn = useIsLoggedIn();
   const [, , , , , refetch] = useMyCart();
 
-  // Category data ফেচ
+  // Profile loads only once
+  const [profile, profileLoading] = useProfile();
+
+  // Category data
   const getCategoryData = async (categoryId) => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/categori/${categoryId}/`);
-      setCategoryproduct(response?.data);
+      const response = await axios.get(
+        `${BASE_URL}/api/categori/${categoryId}/`
+      );
+
+      setCategoryproduct(response.data);
     } catch (error) {
       console.error("Error fetching category:", error);
     }
   };
 
-  // Product data ফেচ
+  // Product data
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/api/product/${id}/`);
-        setProduct(response?.data);
+        const response = await axios.get(
+          `${BASE_URL}/api/product/${id}/`
+        );
 
-        if (response?.data?.category?.id) {
+        setProduct(response.data);
+
+        if (response.data?.category?.id) {
           getCategoryData(response.data.category.id);
         }
       } catch (error) {
@@ -52,7 +62,7 @@ const ProductDetailes = () => {
   // Add to cart
   const addToCart = async (productId) => {
     if (!isLoggedIn) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
@@ -66,16 +76,19 @@ const ProductDetailes = () => {
           },
         }
       );
+
       alert("Product added to cart!");
       refetch();
+
     } catch (error) {
-      console.error("Error adding to cart:", error);
+      console.error(error);
       alert("Failed to add product to cart.");
     }
   };
 
-  if (!product) {
-    return <Loading></Loading>
+  // Single loading screen
+  if (!product || profileLoading) {
+    return <Loading />;
   }
 
   return (
@@ -83,7 +96,6 @@ const ProductDetailes = () => {
       <Helmet>
         <title>Product Details</title>
       </Helmet>
-
 
       <div className="grid md:grid-cols-2 gap-6 my-6">
         <div>
@@ -93,20 +105,30 @@ const ProductDetailes = () => {
             className="w-full h-auto object-cover rounded-lg"
           />
         </div>
+
         <div className="p-4">
-          <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
+          <h1 className="text-3xl font-bold mb-4">
+            {product.title}
+          </h1>
+
           <div className="mb-4">
             <h2 className="text-xl">
               Price:
+
               <span className="line-through text-gray-500 ml-2">
                 ৳{product.marcket_price?.toLocaleString()}
               </span>
+
               <span className="text-red-600 font-bold ml-2">
                 ৳{product.selling_price?.toLocaleString()}
               </span>
             </h2>
           </div>
-          <p className="text-gray-700 mb-6">{product.description}</p>
+
+          <p className="text-gray-700 mb-6">
+            {product.description}
+          </p>
+
           <button
             onClick={() => addToCart(product.id)}
             className="btn btn-success text-white px-6 py-2 rounded-lg"
@@ -118,13 +140,24 @@ const ProductDetailes = () => {
 
       {/* Related Products */}
       <div className="mt-10">
-        <h1 className="text-2xl font-bold mb-6">Related Products</h1>
+        <h1 className="text-2xl font-bold mb-6">
+          Related Products
+        </h1>
+
         <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4">
-          {categoryproduct?.[0]?.category_product?.map((relatedProduct, i) => (
-            <div key={i} className="col-span-1">
-              <ProductCard product={relatedProduct} />
-            </div>
-          ))}
+          {categoryproduct?.[0]?.category_product?.map(
+            (relatedProduct) => (
+              <div
+                key={relatedProduct.id}
+                className="col-span-1"
+              >
+                <ProductCard
+                  product={relatedProduct}
+                  profile={profile}
+                />
+              </div>
+            )
+          )}
         </div>
       </div>
     </div>
