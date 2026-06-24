@@ -11,7 +11,7 @@ Built with **React.js (Frontend)** and **Django REST Framework (Backend)**, inte
 ---
 
 ## 🌐 Admin link
-👉 [Click Here to Visit Admin site]([https://emobileshope.netlify.app](https://emobileshope.onrender.com/admin/))
+👉 [Click Here to Visit Admin site](https://emobileshope.onrender.com/admin/)
 
 ---
 
@@ -37,6 +37,7 @@ Built with **React.js (Frontend)** and **Django REST Framework (Backend)**, inte
 For testing admin features,
 
 ## Email: alamin@gmail.com
+## Username: alamin
 
 ## Password :1234
 
