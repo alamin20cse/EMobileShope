@@ -46,7 +46,7 @@ For testing admin features,
 
 ## 🛠️ Tech Stack
 
-**Frontend:**
+**Frontend :**
 - React.js  
 - Tailwind CSS  
 - Axios  
