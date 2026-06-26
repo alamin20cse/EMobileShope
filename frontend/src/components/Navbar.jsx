@@ -14,7 +14,7 @@ const NavBar = () => {
       const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 
-    if (isLoadingPfofile) return <div>loading profile </div>
+    // if (isLoadingPfofile) return <div>loading profile </div>
     // console.log(profile);
 
   // console.log(incompleteCarts.length);
