@@ -3,29 +3,10 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from cloudinary.models import CloudinaryField
 
-
-from PIL import Image
-from io import BytesIO
-from django.core.files.base import ContentFile
-
-
-
-from .utils import convert_to_webp
-
-
 class User(AbstractUser):
-    photo = CloudinaryField('image', blank=True, null=True)
+    photo = CloudinaryField('image', blank=True, null=True)  # Cloudinary handles storage
     is_blocked = models.BooleanField(default=False)
 
-    def save(self, *args, **kwargs):
-        if self.photo and hasattr(self.photo, "file"):
-            self.photo = convert_to_webp(
-                self.photo,
-                width=400,
-                quality=70
-            )
-
-        super().save(*args, **kwargs)
 
 
 class Category(models.Model):
@@ -35,44 +16,15 @@ class Category(models.Model):
         return self.title
     
 class Product(models.Model):
-    title = models.CharField(
-        max_length=200,
-        db_index=True
-    )
-
+    title = models.CharField(max_length=200)
     date = models.DateField(auto_now_add=True)
-
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True
-    )
-
-    image = CloudinaryField(
-        'image',
-        folder='products/',
-        null=True,
-        blank=True
-    )
-
+    category = models.ForeignKey(Category,on_delete=models.SET_NULL,blank=True, null=True)
+    image = CloudinaryField('image', folder='products/', null=True, blank=True)  # CloudinaryField
     marcket_price = models.PositiveIntegerField()
     selling_price = models.PositiveIntegerField()
     description = models.TextField()
-
-    def save(self, *args, **kwargs):
-        if self.image and hasattr(self.image, "file"):
-            self.image = convert_to_webp(
-                self.image,
-                width=800,
-                quality=60
-            )
-
-        super().save(*args, **kwargs)
-
     def __str__(self):
         return self.title
-
 
 class Cart(models.Model):
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -128,34 +80,13 @@ class Payment(models.Model):
 
 
 
+
 class Review(models.Model):
-    description = models.TextField()
+    description=models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-
-    product = models.ForeignKey(
-        Product,
-        on_delete=models.CASCADE,
-        related_name="reviews"
-    )
-
-    email = models.EmailField()
-
-    image = CloudinaryField(
-        'image',
-        folder='review/',
-        null=True,
-        blank=True
-    )
-
-    def save(self, *args, **kwargs):
-        if self.image and hasattr(self.image, "file"):
-            self.image = convert_to_webp(
-                self.image,
-                width=500,
-                quality=60
-            )
-
-        super().save(*args, **kwargs)
-
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="reviews")
+    email=models.EmailField()
+    image = CloudinaryField('image', folder='review/', null=True, blank=True)  # CloudinaryField
     def __str__(self):
         return self.email
+
