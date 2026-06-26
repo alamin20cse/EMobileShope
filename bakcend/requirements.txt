@@ -25,3 +25,4 @@ django-multiselectfield==1.0.1
 django-crispy-forms==2.4
 crispy-bootstrap4==2025.6
 pymysql==1.1.0
+
