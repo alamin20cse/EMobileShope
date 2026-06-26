@@ -3,30 +3,19 @@ from .models import *
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 
-from cloudinary.utils import cloudinary_url
-
 class ProductSerializers(serializers.ModelSerializer):
-
     class Meta:
         model = Product
         fields = "__all__"
         depth = 1
+     
 
     def to_representation(self, instance):
+        """Override to return full Cloudinary URL for image."""
         rep = super().to_representation(instance)
-
         if instance.image:
-            url, options = cloudinary_url(
-                instance.image.public_id,
-                width=800,
-                crop="limit",
-                quality="auto:good",
-                fetch_format="auto"
-            )
-            rep["image"] = url
-
+            rep['image'] = instance.image.url  # CloudinaryField full URL
         return rep
-
 
 class CatagorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -61,22 +50,14 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email', 'first_name', 'last_name', 'photo', 'is_staff', 'is_blocked')
 
-    from cloudinary.utils import cloudinary_url
-    
     def to_representation(self, instance):
+        """Override to return full Cloudinary URL for photo."""
         rep = super().to_representation(instance)
-    
-        if instance.photo:
-            url, options = cloudinary_url(
-                instance.photo.public_id,
-                width=300,
-                crop="limit",
-                quality="auto",
-                fetch_format="auto"
-            )
-            rep["photo"] = url
-    
+        if instance.photo:  # Use 'photo' instead of 'image'
+            rep['photo'] = instance.photo.url  # CloudinaryField full URL
         return rep
+
+
 
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
@@ -120,19 +101,12 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('email', 'date')
      
+
     def to_representation(self, instance):
+        """Override to return full Cloudinary URL for image."""
         rep = super().to_representation(instance)
-    
         if instance.image:
-            url, options = cloudinary_url(
-                instance.image.public_id,
-                width=400,
-                crop="limit",
-                quality="auto",
-                fetch_format="auto"
-            )
-            rep["image"] = url
-    
+            rep['image'] = instance.image.url  # Cloudinary full URL
         return rep
-    
-    
+
+
