@@ -1,11 +1,11 @@
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
 import { Carousel } from 'react-responsive-carousel';
-import p1 from '../assets/photo7.png'
-import p2 from '../assets/photo2.png'
-import p3 from '../assets/photo3.png'
-import p4 from '../assets/phot4.png'
-import p5 from '../assets/photo5.png'
+import p1 from '../assets/photo7.webp'
+import p2 from '../assets/photo2.webp'
+import p3 from '../assets/photo3.webp'
+import p4 from '../assets/phot4.webp'
+import p5 from '../assets/photo5.webp'
 import p6 from '../assets/photo6.webp'
 
 const Bannar = () => {
