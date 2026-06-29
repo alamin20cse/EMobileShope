@@ -26,7 +26,7 @@ admin.site.register(Cart,CartAdmin)
 admin.site.register(CartProduct)
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("id","cart","date")
+    list_display = ("id","cart","date","email","order_status")
 admin.site.register(Order,OrderAdmin)
 
 
